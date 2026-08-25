@@ -601,6 +601,26 @@
     text-shadow:0 1px 0 rgba(255,255,255,.3);
     margin:0 0 1.8rem;
   }
+  .society-assoc-logo-wrap{
+    display:flex;
+    justify-content:center;
+    margin:0 0 .6rem;
+  }
+  .society-assoc-logo{
+    width:min(58%, 230px);
+    height:auto;
+    filter:drop-shadow(0 10px 26px rgba(30,20,10,.35)) drop-shadow(0 0 22px rgba(127,214,230,.22));
+    animation:societyAssocFloat 6s ease-in-out infinite;
+    user-select:none;
+    -webkit-user-drag:none;
+  }
+  @keyframes societyAssocFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-11px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .society-assoc-logo{ animation:none; }
+  }
   .society-text{
     font-family:'Cairo', sans-serif;
     font-size:clamp(.98rem, 1.9vw, 1.12rem);
@@ -1988,6 +2008,15 @@
   .expand-partner-logo--abanumay{ width:109px; -webkit-mask-image:url('logo-abanumay.webp'); mask-image:url('logo-abanumay.webp'); }
   .expand-partner-logo--rajhi{ width:74px; -webkit-mask-image:url('logo-rajhi.webp'); mask-image:url('logo-rajhi.webp'); }
 
+  /* the closing "logos again" appearance reads as a final credit, so it is
+     shown noticeably larger than the first appearance up in the title beat */
+  #expandPartnersFinal{ gap:2.4rem 3.2rem; }
+  #expandPartnersFinal .expand-partner-logo{ height:92px; opacity:1; }
+  #expandPartnersFinal .expand-partner-logo--scy{ width:106px; }
+  #expandPartnersFinal .expand-partner-logo--bathel{ width:159px; }
+  #expandPartnersFinal .expand-partner-logo--abanumay{ width:157px; }
+  #expandPartnersFinal .expand-partner-logo--rajhi{ width:106px; }
+
   .expand-map-wrap{
     position:relative;
     width:min(94vw, calc(80vh * 1.4626));
@@ -2154,6 +2183,13 @@
     .expand-partner-logo--bathel{ width:76px; }
     .expand-partner-logo--abanumay{ width:75px; }
     .expand-partner-logo--rajhi{ width:51px; }
+
+    #expandPartnersFinal{ gap:1.5rem 1.8rem; }
+    #expandPartnersFinal .expand-partner-logo{ height:64px; }
+    #expandPartnersFinal .expand-partner-logo--scy{ width:74px; }
+    #expandPartnersFinal .expand-partner-logo--bathel{ width:111px; }
+    #expandPartnersFinal .expand-partner-logo--abanumay{ width:109px; }
+    #expandPartnersFinal .expand-partner-logo--rajhi{ width:74px; }
   }
 
   /* ---------------- closing: envelope + letter ---------------- */
@@ -2219,7 +2255,7 @@
     top:50%;
     width:min(88%, 620px);
     max-width:92vw;
-    transform:translate(-50%,-50%) translateY(30px) scale(.94);
+    transform:translate(-50%,-50%) translateY(175px) scale(.5);
     background:linear-gradient(180deg, #fbf3e2 0%, #f4e6c8 100%);
     border-radius:6px;
     box-shadow:0 30px 70px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.4) inset;
@@ -2228,6 +2264,14 @@
     opacity:0;
     pointer-events:none;
     will-change:opacity, transform;
+  }
+  .envelope-letter-title{
+    font-family:'El Messiri', serif;
+    font-weight:700;
+    font-size:clamp(1.3rem, 3vw, 1.7rem);
+    color:#8a3a1a;
+    margin:0 0 1.1rem;
+    text-shadow:0 1px 0 rgba(255,255,255,.4);
   }
   .envelope-letter-p{
     font-family:'El Messiri', serif;
@@ -2634,6 +2678,9 @@
 
 <div class="society-section">
   <div class="society-inner">
+    <div class="society-assoc-logo-wrap reveal">
+      <img class="society-assoc-logo" src="logo-fatat20-glass.webp" alt="جمعية فتاة العشرين" />
+    </div>
     <h2 class="society-title reveal">كلمة الجمعية</h2>
     <div class="society-card reveal">
       <p class="society-text">في جمعية فتاة العشرين نؤمن بأن كل تجربة نوعية تُقدَّم للفتاة هي فرصة لصناعة أثر يمتد معها. ومن هذا المنطلق جاء شُرفة٢ امتدادًا لنجاح شُرفة، ومتوسعًا إلى ستة مقرات داخل الرياض وخارجها، ليجمع بين البناء القيمي والمهاري في تجربة تتمحور حول قيمة الرضا.</p>
@@ -3288,7 +3335,7 @@
         </div>
       </div>
 
-      <div class="expand-text" id="expandPartnersFinalWrap">
+      <div class="expand-text expand-text--wide" id="expandPartnersFinalWrap">
         <div class="expand-partners" id="expandPartnersFinal">
           <span class="expand-partner-logo expand-partner-logo--scy" role="img" aria-label="المجلس التخصصي للجمعيات الشبابية"></span>
           <span class="expand-partner-logo expand-partner-logo--bathel" role="img" aria-label="باذل"></span>
@@ -3312,6 +3359,7 @@
       </div>
 
       <div class="envelope-letter" id="envelopeLetter">
+        <h3 class="envelope-letter-title">ختامًا</h3>
         <p class="envelope-letter-p" id="envLetterP1">الحمد لله على التوفيق والتمام، اختُتم شُرفة 2 بعد صيفٍ استُثمر في بناء فتيات العشرين؛ العمر الذي تبدأ فيه كثير من «المرات الأولى»، وتتسع معه الخيارات والمقارنات والتساؤلات.</p>
         <p class="envelope-letter-p" id="envLetterP2">ومن هنا جاء اختيار الرضا قيمةً لهذه النسخة، قال تعالى: ﴿وَرِضْوَانٌ مِنَ اللَّهِ أَكْبَرُ﴾ <span class="envelope-letter-ref">[التوبة: 72]</span>؛ ليكون معنىً تعيشه الفتاة في علاقتها بالله ونظرتها لذاتها وحياتها. وقد حكت قصص النجاح أثرًا تجاوز أيام البرنامج إلى ممارسات وتجارب يومية؛ ليبقى شُرفة2 أثرًا ممتدًا لما بعد الصيف.</p>
       </div>
@@ -3894,7 +3942,7 @@
     var letterOp = letterInT * (1 - letterOutT);
     if (envelopeLetter){
       envelopeLetter.style.opacity = String(letterOp);
-      envelopeLetter.style.transform = 'translate(-50%,-50%) translateY(' + lerp(30, 0, letterInT) + 'px) scale(' + lerp(0.94, 1, letterInT) + ')';
+      envelopeLetter.style.transform = 'translate(-50%,-50%) translateY(' + lerp(175, 0, letterInT) + 'px) scale(' + lerp(0.5, 1, letterInT) + ')';
     }
     var p1Op = cascadeOpacity(p, 0.40, 0.04, 0.72, 0.08);
     var p2Op = cascadeOpacity(p, 0.45, 0.04, 0.72, 0.08);
