@@ -2648,6 +2648,76 @@
     .envelope-closing-divider{ width:60%; height:1px; background:linear-gradient(90deg, transparent, rgba(243,233,218,.35), transparent); }
   }
 
+  /* ---------------- footer ---------------- */
+
+  .site-footer{
+    position:relative;
+    background:linear-gradient(180deg, var(--night-1) 0%, #0c0605 100%);
+    padding:3.4rem 1.5rem 3rem;
+    text-align:center;
+  }
+  .footer-inner{
+    max-width:520px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.3rem;
+  }
+  .footer-website{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    direction:ltr;
+    font-family:'Cairo', sans-serif;
+    font-weight:700;
+    font-size:clamp(1.02rem, 2vw, 1.2rem);
+    color:var(--thread);
+    text-decoration:none;
+    padding:.6rem 1.7rem;
+    border:1.5px solid rgba(240,221,176,.35);
+    border-radius:999px;
+    transition:background .25s ease, border-color .25s ease, transform .2s ease;
+  }
+  .footer-website svg{ width:1.15rem; height:1.15rem; flex-shrink:0; }
+  .footer-website:hover, .footer-website:focus-visible{
+    background:rgba(240,221,176,.1);
+    border-color:rgba(240,221,176,.6);
+    transform:translateY(-1px);
+  }
+  .footer-social{
+    display:flex;
+    align-items:center;
+    gap:1.1rem;
+  }
+  .footer-social-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:2.75rem;
+    height:2.75rem;
+    border-radius:50%;
+    background:rgba(240,221,176,.08);
+    border:1.5px solid rgba(240,221,176,.25);
+    color:var(--thread);
+    transition:background .25s ease, border-color .25s ease, transform .2s ease;
+  }
+  .footer-social-link svg{ width:1.3rem; height:1.3rem; }
+  .footer-social-link:hover, .footer-social-link:focus-visible{
+    background:rgba(240,221,176,.16);
+    border-color:rgba(240,221,176,.55);
+    transform:translateY(-2px);
+  }
+  .footer-handle{
+    font-family:'Cairo', sans-serif;
+    font-weight:600;
+    font-size:.92rem;
+    color:rgba(240,221,176,.65);
+    margin:0;
+    letter-spacing:.02em;
+    direction:ltr;
+  }
+
   .reveal{
     opacity:0;
     transform:translateY(28px);
@@ -3801,6 +3871,27 @@
     </div>
   </div>
 </div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a class="footer-website" href="https://fatat20.sa/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.6 3.6 5.7 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-5.7-3.6-9s1.2-6.4 3.6-9z"/></svg>
+      <span>fatat20.sa</span>
+    </a>
+    <div class="footer-social">
+      <a class="footer-social-link" href="https://instagram.com/ft20at" target="_blank" rel="noopener" aria-label="إنستقرام">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://www.snapchat.com/add/ft20at" target="_blank" rel="noopener" aria-label="سناب شات">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.4c-3.3 0-5.7 2.6-5.7 6v2c0 .4-.2.7-.5.9-.8.5-1.7.8-2.3.9-.4.1-.5.6-.2.9.4.4 1 .9 1.9 1.2-.1.3-.1.6.1.8.3.4.9.6 1.6.7-.1.3 0 .6.3.8.6.4 1.6.6 2.4.5.5.9 1.5 1.5 2.4 1.5.9 0 1.9-.6 2.4-1.5.8.1 1.8-.1 2.4-.5.3-.2.4-.5.3-.8.7-.1 1.3-.3 1.6-.7.2-.2.2-.5.1-.8.9-.3 1.5-.8 1.9-1.2.3-.3.2-.8-.2-.9-.6-.1-1.5-.4-2.3-.9-.3-.2-.5-.5-.5-.9v-2c0-3.4-2.4-6-5.7-6z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://x.com/ft20at" target="_blank" rel="noopener" aria-label="إكس">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </div>
+    <p class="footer-handle">@ft20at</p>
+  </div>
+</footer>
 
 <script>
 (function(){
