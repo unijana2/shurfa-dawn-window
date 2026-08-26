@@ -2040,7 +2040,13 @@
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
     color:var(--night-2);
-    margin:0 0 2rem;
+    margin:0 0 .7rem;
+  }
+  .coverage-subtitle{
+    font-family:'Cairo', sans-serif;
+    font-size:clamp(1rem, 1.6vw, 1.12rem);
+    color:rgba(42,23,16,.68);
+    margin:0 0 3rem;
   }
   .coverage-placeholder{
     border:1.5px dashed rgba(42,23,16,.28);
@@ -2049,6 +2055,69 @@
     font-family:'Cairo', sans-serif;
     font-size:clamp(1.058rem, 1.728vw, 1.15rem);
     color:rgba(42,23,16,.55);
+  }
+
+  .coverage-gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:2.2rem 1.6rem;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .day-card{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    cursor:pointer;
+  }
+  .day-photos{
+    position:relative;
+    width:100%;
+    aspect-ratio:4/5;
+    margin:0 0 1.1rem;
+  }
+  .day-photo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:.6rem;
+    border:5px solid #fffdf8;
+    box-shadow:0 10px 22px rgba(42,23,16,.28);
+    transition:transform .4s cubic-bezier(.22,.61,.36,1), box-shadow .4s ease;
+  }
+  .day-photo--1{ transform:rotate(-7deg) translate(-8%, 2%); z-index:1; }
+  .day-photo--2{ transform:rotate(4deg) translate(7%, -1%); z-index:2; }
+  .day-photo--3{ transform:rotate(-2deg) translate(0, 4%) scale(1.02); z-index:3; }
+  .day-card:hover .day-photo--1, .day-card:focus-visible .day-photo--1{ transform:rotate(-14deg) translate(-20%, -4%); }
+  .day-card:hover .day-photo--2, .day-card:focus-visible .day-photo--2{ transform:rotate(11deg) translate(20%, -6%); }
+  .day-card:hover .day-photo--3, .day-card:focus-visible .day-photo--3{ transform:rotate(-2deg) translate(0, 8%) scale(1.05); box-shadow:0 16px 30px rgba(42,23,16,.34); }
+  .day-label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.4rem;
+    font-family:'Cairo', sans-serif;
+    font-weight:700;
+    font-size:clamp(.98rem, 1.6vw, 1.1rem);
+    color:var(--night-2);
+  }
+  .day-label-more{
+    font-family:'Cairo', sans-serif;
+    font-weight:500;
+    font-size:.82rem;
+    color:var(--amber);
+    display:block;
+    text-align:center;
+    margin:.15rem 0 0;
+    opacity:.85;
+  }
+  @media (max-width: 860px){
+    .coverage-gallery{ grid-template-columns:repeat(2, 1fr); gap:2.6rem 1.4rem; }
+  }
+  @media (max-width: 480px){
+    .day-photo{ border-width:4px; }
   }
 
   /* ---------- partner-driven expansion journey (scroll-scrubbed map) ---------- */
@@ -3433,8 +3502,117 @@
 <div class="coverage-section">
   <img class="coverage-float-cam" src="camera-star.webp" alt="" aria-hidden="true" />
   <div class="coverage-inner">
-    <h2 class="coverage-title reveal">التغطية الإعلامية</h2>
-    <div class="coverage-placeholder reveal">سيتم إضافة التغطية هنا قريبًا.</div>
+    <h2 class="coverage-title reveal">عدسة البرنامج</h2>
+    <p class="coverage-subtitle reveal">اضغطي على أي يوم لمشاهدة بقية الصور والتغطية</p>
+    <div class="coverage-gallery">
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1bztGFh2jYLXfgoJRJMBKXgl-UlZE6Mi7?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day1_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day1_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day1_3.webp" alt="اليوم الأول" />
+        </div>
+        <div class="day-label">اليوم الأول</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/10MapVfNkBYUEYbBrTlNU48OW6A8xbqVg?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day2_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day2_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day2_3.webp" alt="اليوم الثاني" />
+        </div>
+        <div class="day-label">اليوم الثاني</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1egMr9MspWTqSsiwrHU18lnL1NBNF0eLd?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day3_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day3_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day3_3.webp" alt="اليوم الثالث" />
+        </div>
+        <div class="day-label">اليوم الثالث</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1Sxkwv8ZC5crK6SAvJNCx100Yoj7ErZ-n?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day4_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day4_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day4_3.webp" alt="اليوم الرابع" />
+        </div>
+        <div class="day-label">اليوم الرابع</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1wV9lOFFVniffFknENq-ESHgDvG7X7W_p?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day5_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day5_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day5_3.webp" alt="اليوم الخامس" />
+        </div>
+        <div class="day-label">اليوم الخامس</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/13CS0uyrOu7et0FSS7FKiztiqsrrARNwd?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day6_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day6_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day6_3.webp" alt="اليوم السادس" />
+        </div>
+        <div class="day-label">اليوم السادس</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1xLyVzO5BX_feffsEXCoTZfB_8LqNLiYe?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day7_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day7_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day7_3.webp" alt="اليوم السابع" />
+        </div>
+        <div class="day-label">اليوم السابع</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1AxAjN7dcL-atM7_XofchHp3HynXzQeFV?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day8_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day8_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day8_3.webp" alt="اليوم الثامن" />
+        </div>
+        <div class="day-label">اليوم الثامن</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/10A8319R-MD7qjPyLZqkzhOg4xm-A54BL?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day9_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day9_2.webp" alt="اليوم التاسع" />
+        </div>
+        <div class="day-label">اليوم التاسع</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1sWovuh5zbrTBSIPpgBQg1IG8px0Li_ms?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day10_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day10_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day10_3.webp" alt="اليوم العاشر" />
+        </div>
+        <div class="day-label">اليوم العاشر</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1ZnZVnecciDnnU5dQdAqdArzMbKouHwKi?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="day11_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="day11_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="day11_3.webp" alt="اليوم الحادي عشر" />
+        </div>
+        <div class="day-label">اليوم الحادي عشر</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1BoO0VXEnlRdymsaRF6BOeQvpZzCyzKBu?usp=sharing" target="_blank" rel="noopener">
+        <div class="day-photos">
+          <img class="day-photo day-photo--1" src="closing_1.webp" alt="" />
+          <img class="day-photo day-photo--2" src="closing_2.webp" alt="" />
+          <img class="day-photo day-photo--3" src="closing_3.webp" alt="الحفل الختامي" />
+        </div>
+        <div class="day-label">الحفل الختامي</div>
+        <span class="day-label-more">مشاهدة المزيد ↗</span>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -4378,7 +4556,7 @@
   staggerGroup('.chat-title, .chat-tag, .chat-bubble');
   staggerGroup('.risks-title, .risks-intro, .risks-card');
   staggerGroup('.recs-title, .recs-intro, .rec-note');
-  staggerGroup('.coverage-title, .coverage-placeholder');
+  staggerGroup('.coverage-title, .coverage-subtitle, .day-card');
 
   var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal, .reveal-pop'));
   function revealOne(el){
