@@ -1,7 +1,7 @@
 <title>نافذة الفجر</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Cairo:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap">
 
 <style>
   :root{
@@ -246,7 +246,7 @@
     width:min(80%, 580px);
     transform:translate(-50%,-50%) translateY(14px);
     text-align:center;
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.552rem, 3.672vw, 2.415rem);
     line-height:2;
@@ -307,7 +307,7 @@
     width:min(80%, 520px);
     transform:translate(-50%,-50%) translateY(14px);
     text-align:center;
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-size:clamp(1.438rem, 3.564vw, 2.3rem);
     line-height:1.9;
     color:#fbf1e2;
@@ -346,7 +346,9 @@
 
   .outputs-stats{
     position:relative;
-    background:linear-gradient(180deg, #c98a4f 0%, #a9683a 45%, #8f5530 100%);
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5rem 1.5rem 6rem;
     overflow:hidden;
   }
@@ -371,7 +373,7 @@
     text-align:center;
   }
   .stats-line{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-size:clamp(1.322rem, 2.808vw, 1.955rem);
     line-height:1.9;
     color:#fbf1e2;
@@ -409,15 +411,16 @@
     text-align:center;
   }
   .stat-tag .tag-num{
-    font-family:'El Messiri', serif;
-    font-weight:700;
-    font-size:clamp(1.84rem, 3.888vw, 2.76rem);
-    line-height:1;
+    font-family:'Cairo', sans-serif;
+    font-weight:800;
+    font-size:clamp(2.6rem, 5.4vw, 3.9rem);
+    line-height:.95;
   }
   .stat-tag .tag-label{
     font-family:'Cairo', sans-serif;
-    font-size:clamp(.828rem, 1.62vw, 1.012rem);
-    line-height:1.35;
+    font-weight:600;
+    font-size:clamp(.8rem, 1.5vw, .96rem);
+    line-height:1.3;
   }
   .stat-tag[data-tag="red"] .tag-num,
   .stat-tag[data-tag="blue"] .tag-num{ color:#fbf1e2; }
@@ -431,7 +434,7 @@
   }
   .stat-tag--quote .tag-text{ width:76%; }
   .stat-tag--quote .tag-label{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.208rem, 2.592vw, 1.61rem);
     line-height:1.5;
@@ -463,15 +466,16 @@
     text-align:center;
   }
   .stats-hero .tag-num{
-    font-family:'El Messiri', serif;
-    font-weight:700;
-    font-size:clamp(2.99rem, 6.48vw, 4.14rem);
-    line-height:1;
+    font-family:'Cairo', sans-serif;
+    font-weight:800;
+    font-size:clamp(4rem, 8.4vw, 5.7rem);
+    line-height:.95;
     color:#4a2f1c;
   }
   .stats-hero .tag-label{
     font-family:'Cairo', sans-serif;
-    font-size:clamp(1.15rem, 2.376vw, 1.38rem);
+    font-weight:600;
+    font-size:clamp(1.1rem, 2.2vw, 1.3rem);
     color:#4a2f1c;
   }
   .stats-juice{
@@ -489,7 +493,7 @@
     position:relative;
     background:
       radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
-      linear-gradient(180deg, #faf3e4 0%, #f1e2c4 100%);
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6.5rem;
     overflow:hidden;
   }
@@ -502,7 +506,7 @@
     align-items:center;
   }
   .numbers-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.07rem, 4.32vw, 3.105rem);
     color:#5a2a15;
@@ -566,9 +570,8 @@
   .society-section{
     position:relative;
     background:
-      linear-gradient(180deg, rgba(241,226,196,.55) 0%, rgba(241,226,196,.15) 100%),
-      url('section-orange.webp');
-    background-size:100% 100%;
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:6.5rem 1.5rem;
     overflow:hidden;
     display:flex;
@@ -594,7 +597,7 @@
     text-align:center;
   }
   .society-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
     color:#5a2a15;
@@ -640,7 +643,9 @@
 
   .exec-section{
     position:relative;
-    background:linear-gradient(180deg, #f1e2c4 0%, #e9d3a4 100%);
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:4.5rem 1.5rem 6rem;
   }
   .exec-inner{
@@ -654,7 +659,7 @@
     border-top:3px dashed rgba(185,133,63,.65);
   }
   .exec-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.955rem, 4.104vw, 2.76rem);
     color:#5a2a15;
@@ -727,7 +732,7 @@
     padding:1rem;
   }
   .loc-heading{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.84rem, 3.888vw, 2.76rem);
     color:#4a2712;
@@ -808,7 +813,9 @@
 
   .idea-section{
     position:relative;
-    background:linear-gradient(180deg, #2a1710 0%, #1c0f0a 55%, #12090a 100%);
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6.5rem;
   }
   .idea-inner{
@@ -824,11 +831,11 @@
     margin:0 0 2.2rem;
   }
   .idea-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
-    color:#f3e9da;
-    text-shadow:0 0 24px rgba(255,196,64,.22), 0 2px 6px rgba(0,0,0,.4);
+    color:var(--night-2);
+    text-shadow:0 1px 0 rgba(255,255,255,.4);
     margin:0;
   }
   .idea-bulb{
@@ -857,7 +864,7 @@
     font-family:'Cairo', sans-serif;
     font-size:clamp(1.127rem, 2.052vw, 1.288rem);
     line-height:2.1;
-    color:rgba(243,233,218,.88);
+    color:rgba(42,23,16,.82);
   }
 
   @media (max-width: 640px){
@@ -869,7 +876,9 @@
 
   .goals-section{
     position:relative;
-    background:linear-gradient(180deg, #12090a 0%, #1c0f0a 45%, #2a1710 100%);
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6.5rem;
   }
   .goals-inner{
@@ -878,17 +887,17 @@
     text-align:center;
   }
   .goals-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
-    color:#f3e9da;
-    text-shadow:0 2px 6px rgba(0,0,0,.4);
+    color:var(--night-2);
+    text-shadow:0 1px 0 rgba(255,255,255,.4);
     margin:0 0 .8rem;
   }
   .goals-hint{
     font-family:'Cairo', sans-serif;
     font-size:clamp(.977rem, 1.728vw, 1.127rem);
-    color:rgba(243,233,218,.72);
+    color:rgba(42,23,16,.65);
     margin:0 0 3.4rem;
   }
   .goals-board{
@@ -900,7 +909,7 @@
     -webkit-tap-highlight-color:transparent;
   }
   .goals-board:focus-visible{
-    outline:2px solid rgba(243,233,218,.6);
+    outline:2px solid rgba(42,23,16,.55);
     outline-offset:8px;
     border-radius:50%;
   }
@@ -1051,7 +1060,7 @@
     text-align:center;
   }
   .kpi-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
     color:var(--night-2);
@@ -1074,74 +1083,75 @@
     background:rgba(255,255,255,.42);
     border:1px solid rgba(42,23,16,.1);
     border-radius:1.4rem;
-    padding:2.4rem 1.4rem 2.1rem;
+    padding:2rem 1.6rem 2.1rem;
     display:flex;
     flex-direction:column;
-    align-items:center;
-  }
-  .kpi-ring-wrap{
-    position:relative;
-    width:min(42vw, 190px);
-    aspect-ratio:1/1;
-    margin:0 auto 1.3rem;
-  }
-  .kpi-ring{
+    align-items:stretch;
     width:100%;
-    height:100%;
-    transform:rotate(-90deg);
-    display:block;
   }
-  .kpi-ring-bg{
-    fill:none;
-    stroke:rgba(42,23,16,.12);
-    stroke-width:14;
-  }
-  .kpi-ring-fg{
-    fill:none;
-    stroke-width:14;
-    stroke-linecap:round;
-  }
-  .kpi-ring-fg--gold{ stroke:var(--amber); }
-  .kpi-ring-fg--red{ stroke:var(--clay); }
-  .kpi-ring-center{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .kpi-percent{
-    font-family:'Cairo', sans-serif;
-    font-weight:700;
-    font-size:clamp(1.5rem, 3.4vw, 2.1rem);
-  }
-  .kpi-percent--gold{ color:var(--amber-deep); }
-  .kpi-percent--red{ color:var(--clay-deep); }
   .kpi-label{
     font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.15rem, 2.2vw, 1.35rem);
     color:var(--night-2);
-    margin:0 0 .5rem;
+    margin:0 0 1.1rem;
     line-height:1.35;
+    text-align:center;
   }
+  .kpi-bar-row{
+    display:flex;
+    align-items:center;
+    gap:.9rem;
+    width:100%;
+    margin:0 0 .8rem;
+  }
+  .kpi-bar-track{
+    direction:ltr;
+    flex:1;
+    height:18px;
+    border-radius:999px;
+    background:rgba(42,23,16,.1);
+    overflow:hidden;
+  }
+  .kpi-bar-fill{
+    display:block;
+    height:100%;
+    width:0;
+    border-radius:999px;
+    transition:width 1.1s cubic-bezier(.22,.61,.36,1);
+  }
+  .kpi-bar-fill--gold{ background:linear-gradient(90deg, var(--amber-deep), var(--amber)); }
+  .kpi-bar-fill--red{ background:linear-gradient(90deg, var(--clay-deep), var(--clay)); }
+  .kpi-percent{
+    flex:none;
+    font-family:'Cairo', sans-serif;
+    font-weight:700;
+    font-size:clamp(1.2rem, 2.4vw, 1.5rem);
+    min-width:4.6ch;
+    text-align:left;
+    direction:ltr;
+  }
+  .kpi-percent--gold{ color:var(--amber-deep); }
+  .kpi-percent--red{ color:var(--clay-deep); }
   .kpi-numbers{
     font-family:'Cairo', sans-serif;
     font-size:clamp(1rem, 1.8vw, 1.12rem);
     color:rgba(42,23,16,.65);
     margin:0;
+    text-align:center;
   }
 
   @media (max-width: 460px){
     .kpi-grid{ grid-template-columns:1fr; max-width:280px; }
-    .kpi-ring-wrap{ width:min(52vw, 170px); }
   }
 
   /* ---------- developmental results: beneficiaries (themed quotes) ---------- */
 
   .results-section{
     position:relative;
-    background:linear-gradient(180deg, #2a1710 0%, #1c0f0a 55%, #12090a 100%);
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6.5rem;
   }
   .results-inner{
@@ -1149,12 +1159,12 @@
     margin:0 auto;
   }
   .results-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     text-align:center;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
-    color:#f3e9da;
-    text-shadow:0 2px 6px rgba(0,0,0,.4);
+    color:var(--night-2);
+    text-shadow:0 1px 0 rgba(255,255,255,.4);
     margin:0 0 3.4rem;
   }
   .result-theme{
@@ -1177,26 +1187,27 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:1.38rem;
     color:var(--amber);
   }
   .result-theme-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.322rem, 2.808vw, 1.782rem);
-    color:#f3e9da;
+    color:var(--night-2);
     margin:0;
   }
   .result-quote{
     position:relative;
     margin:0 0 1.1rem;
     padding:1.5rem 1.8rem 1.4rem;
-    background:rgba(243,233,218,.05);
-    border:1px solid rgba(243,233,218,.09);
+    background:#fbf4e5;
+    border:1px solid rgba(42,23,16,.1);
     border-radius:1rem;
     overflow:hidden;
+    box-shadow:0 6px 18px rgba(42,23,16,.06);
   }
   .result-quote:last-child{ margin-bottom:0; }
   .result-quote::before{
@@ -1204,7 +1215,7 @@
     position:absolute;
     top:-.6rem;
     right:.9rem;
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-size:4.6rem;
     line-height:1;
     color:rgba(217,132,30,.16);
@@ -1215,7 +1226,7 @@
     font-family:'Cairo', sans-serif;
     font-size:clamp(1.058rem, 1.836vw, 1.208rem);
     line-height:1.9;
-    color:rgba(243,233,218,.88);
+    color:rgba(42,23,16,.82);
     margin:0;
   }
 
@@ -1263,7 +1274,7 @@
     margin:0 auto;
   }
   .voices-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     text-align:center;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
@@ -1303,7 +1314,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:1.208rem;
     color:var(--amber-deep);
@@ -1401,131 +1412,200 @@
 
   /* ---------- impact analysis: beneficiaries (rising staircase) ---------- */
 
+  /* ---------- impact analysis: Swiss editorial grid ---------- */
+
   .impact-section{
     position:relative;
-    background:linear-gradient(180deg, #12090a 0%, #1c0f0a 45%, #2a1710 100%);
-    padding:5.5rem 1.5rem 6.5rem;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
+    padding:6rem 1.6rem 6.5rem;
   }
   .impact-inner{
-    max-width:820px;
+    max-width:1180px;
     margin:0 auto;
   }
   .impact-title{
-    font-family:'El Messiri', serif;
-    font-weight:700;
+    font-family:'Cairo', sans-serif;
+    font-weight:800;
     text-align:center;
-    font-size:clamp(2.185rem, 4.536vw, 3.105rem);
-    color:#f3e9da;
-    text-shadow:0 2px 6px rgba(0,0,0,.4);
-    margin:0 0 .6rem;
+    font-size:clamp(2.2rem, 4.6vw, 3.2rem);
+    color:var(--night-2);
+    margin:0 0 .3rem;
+    letter-spacing:-.01em;
   }
   .impact-subtitle{
     font-family:'Cairo', sans-serif;
+    font-weight:600;
     text-align:center;
-    font-size:clamp(1.092rem, 1.944vw, 1.322rem);
-    color:rgba(243,233,218,.7);
-    margin:0 0 2.2rem;
+    font-size:clamp(1.05rem, 1.9vw, 1.3rem);
+    color:rgba(42,23,16,.5);
+    margin:0 0 3rem;
+    letter-spacing:.04em;
   }
+
+  /* methodology tabs — 02 (observation) is the visually active one */
   .impact-methods{
     display:flex;
-    flex-wrap:wrap;
     justify-content:center;
-    gap:.9rem;
-    margin:0 0 2.6rem;
+    align-items:center;
+    gap:2.2rem;
+    margin:0 0 1.3rem;
   }
   .impact-method{
     display:inline-flex;
-    align-items:center;
-    gap:.6rem;
-    padding:.55rem 1.1rem .55rem .9rem;
-    border-radius:999px;
-    background:rgba(243,233,218,.06);
-    border:1px solid rgba(243,233,218,.14);
+    align-items:baseline;
+    gap:.5rem;
+    padding:0 0 .55rem;
+    border-bottom:2px solid transparent;
   }
   .impact-method-num{
-    flex:none;
-    width:26px;
-    height:26px;
-    border-radius:50%;
-    background:var(--amber);
-    color:#1c0f0a;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'El Messiri', serif;
-    font-weight:700;
-    font-size:1.035rem;
+    font-family:'Cairo', sans-serif;
+    font-weight:800;
+    font-size:1.05rem;
+    color:rgba(42,23,16,.4);
   }
   .impact-method-label{
     font-family:'Cairo', sans-serif;
     font-weight:500;
-    font-size:.977rem;
-    color:rgba(243,233,218,.85);
+    font-size:.92rem;
+    color:rgba(42,23,16,.42);
   }
+  .impact-method--active{
+    border-bottom-color:var(--clay);
+  }
+  .impact-method--active .impact-method-num{ color:var(--clay); }
+  .impact-method--active .impact-method-label{
+    color:var(--night-2);
+    font-weight:700;
+  }
+
+  .impact-rule{
+    display:block;
+    width:100%;
+    height:1px;
+    background:rgba(42,23,16,.16);
+    border:none;
+    margin:0 0 2.6rem;
+  }
+
   .impact-intro{
     font-family:'Cairo', sans-serif;
     text-align:center;
-    font-size:clamp(1.092rem, 1.836vw, 1.208rem);
+    font-size:clamp(1.05rem, 1.8vw, 1.2rem);
     line-height:1.85;
-    color:rgba(243,233,218,.82);
-    margin:0 0 3rem;
+    color:rgba(42,23,16,.72);
+    margin:0 0 4rem;
+    max-width:640px;
+    margin-inline:auto;
+    margin-bottom:4rem;
   }
-  .impact-list{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:.85rem;
+
+  /* asymmetrical editorial grid: 01 narrow column | 02 medium | 03 huge anchor | 04/05/06 stacked side column */
+  .impact-grid{
+    display:grid;
+    grid-template-columns: .85fr 1.25fr 1.7fr .85fr;
+    grid-template-rows: auto auto auto;
+    gap:0;
+    align-items:stretch;
   }
   .impact-item{
+    position:relative;
     display:flex;
-    align-items:flex-start;
-    gap:.9rem;
-    width:var(--step-w, 60%);
-    padding:1rem 1.2rem;
-    background:rgba(217,132,30, var(--step-bg, .06));
-    border:1px solid rgba(217,132,30, var(--step-border, .18));
-    border-radius:.9rem;
-    transition:background .3s ease, border-color .3s ease, width .3s ease;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:1.6rem 1.4rem 1.6rem 0;
+    cursor:default;
   }
-  .impact-item:nth-child(1){ --step-w:44%;  --step-bg:.045; --step-border:.14; }
-  .impact-item:nth-child(2){ --step-w:56%;  --step-bg:.07;  --step-border:.2;  }
-  .impact-item:nth-child(3){ --step-w:68%;  --step-bg:.095; --step-border:.26; }
-  .impact-item:nth-child(4){ --step-w:80%;  --step-bg:.12;  --step-border:.32; }
-  .impact-item:nth-child(5){ --step-w:92%;  --step-bg:.145; --step-border:.38; }
-  .impact-item:nth-child(6){ --step-w:100%; --step-bg:.17;  --step-border:.44; }
-  .impact-num{
-    flex:none;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    border:2px solid var(--amber);
-    background:rgba(217,132,30,.1);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'El Messiri', serif;
-    font-weight:700;
-    font-size:1.092rem;
-    color:var(--amber);
-    margin-top:.1rem;
+  .impact-item--01{ grid-column:1; grid-row:1 / span 3; border-inline-end:1px solid rgba(42,23,16,.14); padding-inline-end:1.6rem; }
+  .impact-item--02{ grid-column:2; grid-row:1 / span 2; padding-inline-start:1.6rem; justify-content:flex-start; padding-top:0; }
+  .impact-item--03{ grid-column:3; grid-row:1 / span 3; padding-inline-start:1.8rem; }
+  .impact-item--04{ grid-column:4; grid-row:1; padding-inline-start:1.4rem; }
+  .impact-item--05{ grid-column:4; grid-row:2; padding-inline-start:1.4rem; border-top:1px solid rgba(42,23,16,.14); padding-top:1.6rem; }
+  .impact-item--06{ grid-column:4; grid-row:3; padding-inline-start:1.4rem; border-top:1px solid rgba(42,23,16,.14); padding-top:1.6rem; }
+  .impact-item--02{ border-top:1px solid rgba(42,23,16,.14); }
+
+  .impact-item-rule{
+    display:block;
+    width:2.2rem;
+    height:2px;
+    background:var(--night-2);
+    margin:0 0 .9rem;
+    transform-origin:right center;
+    transition:width .35s cubic-bezier(.22,.61,.36,1), background-color .35s ease;
   }
-  .impact-item p{
+  .impact-item:hover .impact-item-rule,
+  .impact-item:focus-within .impact-item-rule{
+    width:5rem;
+    background:var(--clay);
+  }
+
+  .impact-num-big{
+    display:block;
     font-family:'Cairo', sans-serif;
-    font-size:clamp(1.035rem, 1.728vw, 1.15rem);
-    line-height:1.8;
-    color:rgba(243,233,218,.88);
+    font-weight:800;
+    color:var(--night-2);
+    line-height:.85;
+    margin:0 0 .5rem;
+    transition:color .3s ease;
+    direction:ltr;
+    text-align:right;
+  }
+  .impact-item--01 .impact-num-big{ font-size:clamp(3.2rem, 6.2vw, 5rem); }
+  .impact-item--02 .impact-num-big{ font-size:clamp(2.8rem, 5.4vw, 4.3rem); }
+  .impact-item--03 .impact-num-big{
+    font-size:clamp(7rem, 15vw, 12rem);
+    margin-inline-end:-.02em;
+  }
+  .impact-item--04 .impact-num-big,
+  .impact-item--05 .impact-num-big,
+  .impact-item--06 .impact-num-big{ font-size:clamp(2.1rem, 3.6vw, 2.7rem); }
+
+  .impact-item:hover .impact-num-big,
+  .impact-item:focus-within .impact-num-big{ color:var(--clay); }
+
+  .impact-item-text{
+    font-family:'Cairo', sans-serif;
+    font-weight:500;
+    font-size:clamp(.95rem, 1.5vw, 1.08rem);
+    line-height:1.75;
+    color:rgba(42,23,16,.8);
     margin:0;
+    max-width:30ch;
+    transition:transform .3s cubic-bezier(.22,.61,.36,1);
+  }
+  .impact-item--03 .impact-item-text{ max-width:22ch; font-weight:600; font-size:clamp(1.05rem, 1.7vw, 1.25rem); }
+  .impact-item:hover .impact-item-text,
+  .impact-item:focus-within .impact-item-text{ transform:translateX(-6px); }
+
+  @media (prefers-reduced-motion: reduce){
+    .impact-item-rule, .impact-num-big, .impact-item-text{ transition:none; }
+  }
+
+  @media (max-width: 860px){
+    .impact-grid{ grid-template-columns: 1fr 1fr; }
+    .impact-item--01{ grid-column:1; grid-row:1; border-inline-end:1px solid rgba(42,23,16,.14); }
+    .impact-item--02{ grid-column:2; grid-row:1; border-top:none; padding-inline-start:1.6rem; }
+    .impact-item--03{ grid-column:1 / span 2; grid-row:2; border-top:1px solid rgba(42,23,16,.14); padding-top:1.8rem; padding-inline-start:0; }
+    .impact-item--04{ grid-column:1; grid-row:3; border-top:1px solid rgba(42,23,16,.14); padding-top:1.6rem; }
+    .impact-item--05{ grid-column:2; grid-row:3; border-top:1px solid rgba(42,23,16,.14); padding-top:1.6rem; }
+    .impact-item--06{ grid-column:1 / span 2; grid-row:4; border-top:1px solid rgba(42,23,16,.14); padding-top:1.6rem; }
   }
 
   @media (max-width: 560px){
-    .impact-method{ padding:.5rem .9rem .5rem .75rem; }
-    .impact-method-label{ font-size:.897rem; }
-    .impact-item:nth-child(1){ --step-w:64%; }
-    .impact-item:nth-child(2){ --step-w:73%; }
-    .impact-item:nth-child(3){ --step-w:82%; }
-    .impact-item:nth-child(4){ --step-w:91%; }
-    .impact-item:nth-child(5){ --step-w:97%; }
-    .impact-item:nth-child(6){ --step-w:100%; }
+    .impact-grid{ display:flex; flex-direction:column; gap:0; }
+    .impact-item{
+      width:100%;
+      border-top:1px solid rgba(42,23,16,.14);
+      border-inline-end:none !important;
+      padding:1.5rem 0 1.5rem !important;
+    }
+    .impact-item:first-child{ border-top:none; }
+    .impact-item--03 .impact-num-big{ font-size:clamp(5.5rem, 26vw, 7.5rem); margin-inline-start:-.02em; }
+    .impact-item--03 .impact-item-text{ max-width:none; }
+    .impact-item-text{ max-width:none; }
+    .impact-methods{ gap:1.4rem; }
   }
 
   /* ---------- program impact: hosting institutions (quran memorization schools) ---------- */
@@ -1542,7 +1622,7 @@
     margin:0 auto;
   }
   .hosts-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     text-align:center;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
@@ -1643,7 +1723,7 @@
     position:absolute;
     top:-.9rem;
     right:1.2rem;
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-size:5.5rem;
     line-height:1;
     color:rgba(217,132,30,.16);
@@ -1662,7 +1742,9 @@
 
   .chat-section{
     position:relative;
-    background:linear-gradient(180deg, #2a1710 0%, #1c0f0a 55%, #12090a 100%);
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6.5rem;
   }
   .chat-inner{
@@ -1674,18 +1756,18 @@
     margin:0 0 3rem;
   }
   .chat-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
-    color:#f3e9da;
-    text-shadow:0 2px 6px rgba(0,0,0,.4);
+    color:var(--night-2);
+    text-shadow:0 1px 0 rgba(255,255,255,.4);
     margin:0 0 .5rem;
   }
   .chat-tag{
     display:inline-block;
     font-family:'Cairo', sans-serif;
     font-size:clamp(.977rem, 1.728vw, 1.127rem);
-    color:rgba(243,233,218,.6);
+    color:rgba(42,23,16,.55);
   }
   .chat-list{
     display:flex;
@@ -1739,14 +1821,56 @@
 
   .risks-section{
     position:relative;
+    overflow:hidden;
     background:
       radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
       linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
-    padding:5.5rem 1.5rem 6.5rem;
+    padding:5.5rem 1.5rem 9.5rem;
   }
   .risks-inner{
+    position:relative;
+    z-index:1;
     max-width:800px;
     margin:0 auto;
+  }
+  .risks-waves{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:min(34vw, 260px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .risks-wave{
+    position:absolute;
+    bottom:-4%;
+    width:100%;
+    height:auto;
+    display:block;
+    user-select:none;
+    -webkit-user-drag:none;
+  }
+  .risks-wave--back{
+    opacity:.4;
+    bottom:2%;
+    transform:scale(1.06);
+  }
+  .risks-wave--front{
+    opacity:.85;
+    bottom:-6%;
+  }
+  .risks-wave--accent{
+    left:auto;
+    right:-2%;
+    bottom:8%;
+    width:min(30vw, 260px);
+    opacity:.9;
+    filter:drop-shadow(0 8px 18px rgba(20,40,70,.18));
+  }
+  @media (max-width: 640px){
+    .risks-waves{ height:min(52vw, 220px); }
+    .risks-wave--accent{ width:min(46vw, 190px); }
   }
   .risks-header{
     display:flex;
@@ -1762,7 +1886,7 @@
     filter:drop-shadow(0 4px 8px rgba(42,23,16,.25));
   }
   .risks-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
     color:var(--night-2);
@@ -1810,7 +1934,9 @@
 
   .recs-section{
     position:relative;
-    background:linear-gradient(180deg, #12090a 0%, #1c0f0a 45%, #2a1710 100%);
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6.5rem;
   }
   .recs-inner{
@@ -1819,17 +1945,18 @@
     text-align:center;
   }
   .recs-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
-    color:#f3e9da;
+    color:var(--night-2);
+    text-shadow:0 1px 0 rgba(255,255,255,.4);
     margin:0 0 .6rem;
   }
   .recs-intro{
     font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.15rem, 1.944vw, 1.322rem);
-    color:var(--amber);
+    color:var(--amber-deep);
     margin:0 0 2.8rem;
   }
   .recs-notes{
@@ -1854,7 +1981,7 @@
   .rec-note-text{
     position:absolute;
     left:54%;
-    top:58%;
+    top:53%;
     transform:translate(-50%,-50%);
     width:70%;
     font-family:'Cairo', sans-serif;
@@ -1873,7 +2000,9 @@
 
   .coverage-section{
     position:relative;
-    background:linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
+      linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6rem;
   }
   .coverage-inner{
@@ -1882,7 +2011,7 @@
     text-align:center;
   }
   .coverage-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
     color:var(--night-2);
@@ -1993,7 +2122,7 @@
     margin:0 0 .5rem;
   }
   .expand-heading{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.955rem, 4.104vw, 2.875rem);
     color:#3c2410;
@@ -2004,7 +2133,7 @@
     will-change:opacity, transform;
   }
   .expand-copy{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.438rem, 3.132vw, 2.127rem);
     color:#3c2410;
@@ -2115,7 +2244,7 @@
     will-change:opacity, transform;
   }
   .expand-point-label-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:1.092rem;
     color:var(--clay-deep);
@@ -2131,7 +2260,7 @@
   }
 
   .expand-stats-heading{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(2.7rem, 6vw, 4.1rem);
     color:#3c2410;
@@ -2145,7 +2274,7 @@
     flex-wrap:wrap;
     align-items:center;
     justify-content:center;
-    gap:.55rem 1.1rem;
+    gap:.7rem 1.6rem;
     margin:1.2rem 0 0;
     font-family:'Cairo', sans-serif;
     font-weight:700;
@@ -2154,9 +2283,24 @@
   }
   .expand-stats-grid .sep{ opacity:.4; font-weight:400; }
   .expand-stat-item{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
     opacity:0;
     will-change:opacity, transform;
+  }
+  .expand-stat-icon{
+    flex:none;
+    width:38px;
+    height:38px;
+    object-fit:contain;
+    display:block;
+    filter:drop-shadow(0 3px 6px rgba(60,30,10,.3));
+    user-select:none;
+    -webkit-user-drag:none;
+  }
+  @media (max-width:640px){
+    .expand-stat-icon{ width:28px; height:28px; }
   }
 
   .expand-title-sub{
@@ -2194,7 +2338,7 @@
   }
   .expand-compare-em{
     display:inline-block;
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.552rem, 3.24vw, 2.185rem);
     color:var(--clay-deep);
@@ -2250,7 +2394,7 @@
 
   .envelope-wrap{
     position:relative;
-    width:min(50vw, 340px);
+    width:min(66vw, 500px);
     aspect-ratio:1223/1286;
     will-change:transform, opacity;
   }
@@ -2295,7 +2439,7 @@
     will-change:opacity, transform;
   }
   .envelope-letter-title{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.495rem, 3.24vw, 1.955rem);
     color:#8a3a1a;
@@ -2303,7 +2447,7 @@
     text-shadow:0 1px 0 rgba(255,255,255,.4);
   }
   .envelope-letter-p{
-    font-family:'El Messiri', serif;
+    font-family:'Cairo', sans-serif;
     font-weight:700;
     font-size:clamp(1.208rem, 2.268vw, 1.552rem);
     line-height:2.05;
@@ -2334,9 +2478,9 @@
   }
   .envelope-closing-logo{
     display:block;
-    height:clamp(46px, 6.4vw, 70px);
+    height:clamp(58px, 7.8vw, 92px);
     width:auto;
-    max-width:38vw;
+    max-width:42vw;
     object-fit:contain;
     will-change:opacity, filter;
   }
@@ -2355,7 +2499,7 @@
   }
 
   @media (max-width:640px){
-    .envelope-wrap{ width:min(62vw, 300px); }
+    .envelope-wrap{ width:min(78vw, 400px); }
     .envelope-letter{ padding:1.3rem 1.2rem; }
     .envelope-letter-p{ font-size:1.15rem; line-height:1.9; }
     .envelope-closing{ flex-direction:column; gap:1.2rem; }
@@ -2372,11 +2516,11 @@
     transform:translateY(0);
   }
 
-  /* items that visually pop out of the suitcase above and settle into place */
+  /* calm, formal settle-into-place motion for cards/tags/notes */
   .reveal-pop{
     opacity:0;
-    transform:translateY(-210px) scale(.3) rotate(var(--rot-start, -8deg));
-    transition:opacity .65s ease, transform 1s cubic-bezier(.34,1.56,.64,1);
+    transform:translateY(22px) scale(.97) rotate(var(--rot-end, 0deg));
+    transition:opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1);
   }
   .reveal-pop.is-visible{
     opacity:1;
@@ -2880,58 +3024,46 @@
 
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-ring-wrap">
-          <svg class="kpi-ring" viewBox="0 0 160 160" aria-hidden="true">
-            <circle class="kpi-ring-bg" cx="80" cy="80" r="70" />
-            <circle class="kpi-ring-fg kpi-ring-fg--gold reveal" data-percent="167.3" cx="80" cy="80" r="70" />
-          </svg>
-          <div class="kpi-ring-center">
-            <span class="kpi-percent kpi-percent--gold">167.3%</span>
-          </div>
-        </div>
         <h3 class="kpi-label reveal">عدد المستفيدات</h3>
+        <div class="kpi-bar-row">
+          <div class="kpi-bar-track">
+            <span class="kpi-bar-fill kpi-bar-fill--gold reveal" data-percent="167.3"></span>
+          </div>
+          <span class="kpi-percent kpi-percent--gold">0%</span>
+        </div>
         <p class="kpi-numbers reveal">المستهدف 150 · المتحقق 251</p>
       </div>
 
       <div class="kpi-card">
-        <div class="kpi-ring-wrap">
-          <svg class="kpi-ring" viewBox="0 0 160 160" aria-hidden="true">
-            <circle class="kpi-ring-bg" cx="80" cy="80" r="70" />
-            <circle class="kpi-ring-fg kpi-ring-fg--red reveal" data-percent="80" cx="80" cy="80" r="70" />
-          </svg>
-          <div class="kpi-ring-center">
-            <span class="kpi-percent kpi-percent--red">80%</span>
-          </div>
-        </div>
         <h3 class="kpi-label reveal">عدد الفتيات اللاتي تم تعزيز الهوية لديهن</h3>
+        <div class="kpi-bar-row">
+          <div class="kpi-bar-track">
+            <span class="kpi-bar-fill kpi-bar-fill--red reveal" data-percent="80"></span>
+          </div>
+          <span class="kpi-percent kpi-percent--red">0%</span>
+        </div>
         <p class="kpi-numbers reveal">المستهدف 25 · المتحقق 20</p>
       </div>
 
       <div class="kpi-card">
-        <div class="kpi-ring-wrap">
-          <svg class="kpi-ring" viewBox="0 0 160 160" aria-hidden="true">
-            <circle class="kpi-ring-bg" cx="80" cy="80" r="70" />
-            <circle class="kpi-ring-fg kpi-ring-fg--gold reveal" data-percent="109.5" cx="80" cy="80" r="70" />
-          </svg>
-          <div class="kpi-ring-center">
-            <span class="kpi-percent kpi-percent--gold">109.5%</span>
-          </div>
-        </div>
         <h3 class="kpi-label reveal">عدد الورش</h3>
+        <div class="kpi-bar-row">
+          <div class="kpi-bar-track">
+            <span class="kpi-bar-fill kpi-bar-fill--gold reveal" data-percent="109.5"></span>
+          </div>
+          <span class="kpi-percent kpi-percent--gold">0%</span>
+        </div>
         <p class="kpi-numbers reveal">المستهدف 42 · المتحقق 46</p>
       </div>
 
       <div class="kpi-card">
-        <div class="kpi-ring-wrap">
-          <svg class="kpi-ring" viewBox="0 0 160 160" aria-hidden="true">
-            <circle class="kpi-ring-bg" cx="80" cy="80" r="70" />
-            <circle class="kpi-ring-fg kpi-ring-fg--gold reveal" data-percent="101.8" cx="80" cy="80" r="70" />
-          </svg>
-          <div class="kpi-ring-center">
-            <span class="kpi-percent kpi-percent--gold">101.8%</span>
-          </div>
-        </div>
         <h3 class="kpi-label reveal">رضا المستفيدات</h3>
+        <div class="kpi-bar-row">
+          <div class="kpi-bar-track">
+            <span class="kpi-bar-fill kpi-bar-fill--gold reveal" data-percent="101.8"></span>
+          </div>
+          <span class="kpi-percent kpi-percent--gold">0%</span>
+        </div>
         <p class="kpi-numbers reveal">المستهدف 96% · المتحقق 97.7%</p>
       </div>
     </div>
@@ -3103,41 +3235,48 @@
 
     <div class="impact-methods">
       <span class="impact-method reveal">
-        <span class="impact-method-num">١</span>
+        <span class="impact-method-num">٠١</span>
         <span class="impact-method-label">من خلال الاستبانات والقياس</span>
       </span>
-      <span class="impact-method reveal">
-        <span class="impact-method-num">٢</span>
+      <span class="impact-method impact-method--active reveal">
+        <span class="impact-method-num">٠٢</span>
         <span class="impact-method-label">من خلال الملاحظة</span>
       </span>
     </div>
+    <hr class="impact-rule" />
 
     <p class="impact-intro reveal">تمت ملاحظة عدد من التغيرات لدى المستفيدات أثناء تنفيذ البرنامج، أبرزها:</p>
 
-    <div class="impact-list">
-      <div class="impact-item reveal">
-        <span class="impact-num">١</span>
-        <p>زيادة الثقة بالنفس والجرأة في المشاركة والتعبير عن الأفكار.</p>
+    <div class="impact-grid">
+      <div class="impact-item impact-item--01">
+        <span class="impact-num-big reveal">٠١</span>
+        <span class="impact-item-rule"></span>
+        <p class="impact-item-text reveal">زيادة الثقة بالنفس والجرأة في المشاركة والتعبير عن الأفكار.</p>
       </div>
-      <div class="impact-item reveal">
-        <span class="impact-num">٢</span>
-        <p>تعزيز الارتباط بالقيم الإسلامية والحرص على الصلاة والأذكار.</p>
+      <div class="impact-item impact-item--02">
+        <span class="impact-num-big reveal">٠٢</span>
+        <span class="impact-item-rule"></span>
+        <p class="impact-item-text reveal">تعزيز الارتباط بالقيم الإسلامية والحرص على الصلاة والأذكار.</p>
       </div>
-      <div class="impact-item reveal">
-        <span class="impact-num">٣</span>
-        <p>تنامي روح المبادرة وتحمل المسؤولية.</p>
+      <div class="impact-item impact-item--03">
+        <span class="impact-num-big reveal">٠٣</span>
+        <span class="impact-item-rule"></span>
+        <p class="impact-item-text reveal">تنامي روح المبادرة وتحمل المسؤولية.</p>
       </div>
-      <div class="impact-item reveal">
-        <span class="impact-num">٤</span>
-        <p>تطور مهارات التواصل والعمل الجماعي والتعاون.</p>
+      <div class="impact-item impact-item--04">
+        <span class="impact-num-big reveal">٠٤</span>
+        <span class="impact-item-rule"></span>
+        <p class="impact-item-text reveal">تطور مهارات التواصل والعمل الجماعي والتعاون.</p>
       </div>
-      <div class="impact-item reveal">
-        <span class="impact-num">٥</span>
-        <p>اكتشاف قدرات ومهارات إبداعية جديدة.</p>
+      <div class="impact-item impact-item--05">
+        <span class="impact-num-big reveal">٠٥</span>
+        <span class="impact-item-rule"></span>
+        <p class="impact-item-text reveal">اكتشاف قدرات ومهارات إبداعية جديدة.</p>
       </div>
-      <div class="impact-item reveal">
-        <span class="impact-num">٦</span>
-        <p>زيادة المرونة في التعامل مع التحديات والتجربة دون خوف من الخطأ.</p>
+      <div class="impact-item impact-item--06">
+        <span class="impact-num-big reveal">٠٦</span>
+        <span class="impact-item-rule"></span>
+        <p class="impact-item-text reveal">زيادة المرونة في التعامل مع التحديات والتجربة دون خوف من الخطأ.</p>
       </div>
     </div>
   </div>
@@ -3236,6 +3375,11 @@
         <li><strong>ضيق الوقت مع تنوع الفقرات اليومية:</strong> أُعيد توزيع الفقرات بما يضمن التوازن وتحقيق أكبر استفادة في كل لقاء.</li>
       </ul>
     </div>
+  </div>
+  <div class="risks-waves" aria-hidden="true">
+    <img class="risks-wave risks-wave--back" src="wave-back.webp" alt="" />
+    <img class="risks-wave risks-wave--front" src="wave-front.webp" alt="" />
+    <img class="risks-wave risks-wave--accent" src="wave-accent.webp" alt="" />
   </div>
 </div>
 
@@ -3349,10 +3493,10 @@
       <div class="expand-text" id="expandStats">
         <h3 class="expand-stats-heading" id="expandStatsHeading">واليوم أصبح أثر شُرفة</h3>
         <p class="expand-stats-grid">
-          <span class="expand-stat-item" data-idx="0">6 مقرات</span><span class="expand-stat-item" data-idx="1"><span class="sep">|</span> 251 مستفيدة</span><span class="expand-stat-item" data-idx="2"><span class="sep">|</span> 3 مدن ومحافظات</span>
+          <span class="expand-stat-item" data-idx="0"><img class="expand-stat-icon" src="locations.webp" alt="" />6 مقرات</span><span class="expand-stat-item" data-idx="1"><img class="expand-stat-icon" src="beneficiaries.webp" alt="" />251 مستفيدة</span><span class="expand-stat-item" data-idx="2"><img class="expand-stat-icon" src="cities.webp" alt="" />3 مدن ومحافظات</span>
         </p>
         <p class="expand-stats-grid">
-          <span class="expand-stat-item" data-idx="3">91 لقاءً قيميًا</span><span class="expand-stat-item" data-idx="4"><span class="sep">|</span> 46 ورشة مهارية</span><span class="expand-stat-item" data-idx="5"><span class="sep">|</span> 41 متطوعة</span>
+          <span class="expand-stat-item" data-idx="3"><img class="expand-stat-icon" src="meetings.webp" alt="" />91 لقاءً قيميًا</span><span class="expand-stat-item" data-idx="4"><img class="expand-stat-icon" src="workshops.webp" alt="" />46 ورشة مهارية</span><span class="expand-stat-item" data-idx="5"><img class="expand-stat-icon" src="volunteers.webp" alt="" />41 متطوعة</span>
         </p>
       </div>
 
@@ -4084,58 +4228,53 @@
     window.addEventListener('resize', layoutGoals);
   }
 
-  /* ---------------- performance indicator rings ---------------- */
+  /* ---------------- performance indicator bars ---------------- */
 
-  var KPI_R = 70;
-  var KPI_CIRC = 2 * Math.PI * KPI_R;
-  function initKpiRings(){
-    var rings = document.querySelectorAll('.kpi-ring-fg');
-    rings.forEach(function(el){
+  function initKpiBars(){
+    var bars = document.querySelectorAll('.kpi-bar-fill');
+    bars.forEach(function(el){
       var pct = parseFloat(el.getAttribute('data-percent')) || 0;
-      var frac = Math.min(pct, 100) / 100;
-      var targetOffset = KPI_CIRC * (1 - frac);
-      el.style.strokeDasharray = KPI_CIRC.toFixed(2);
-      el.style.strokeDashoffset = String(KPI_CIRC);
-      el.setAttribute('data-target-offset', targetOffset.toFixed(2));
+      var targetWidth = Math.min(pct, 100);
+      el.setAttribute('data-target-width', String(targetWidth));
+      el.style.width = '0%';
 
-      var wrap = el.closest('.kpi-ring-wrap');
-      var percentEl = wrap ? wrap.querySelector('.kpi-percent') : null;
+      var row = el.closest('.kpi-bar-row');
+      var percentEl = row ? row.querySelector('.kpi-percent') : null;
       if (percentEl) percentEl.textContent = '0%';
     });
   }
-  initKpiRings();
+  initKpiBars();
 
-  /* animates the ring stroke AND the percentage number together, frame by
-     frame, so the digits climb in sync with the arc sweeping round —
-     instead of the arc filling on its own while the number just snaps
-     to its final value. */
-  function animateKpiRing(el){
-    var startOffset = KPI_CIRC;
-    var targetOffset = parseFloat(el.getAttribute('data-target-offset'));
+  /* animates the bar width AND the percentage number together, frame by
+     frame, so the digits climb in sync with the bar filling — instead of
+     the bar filling on its own while the number just snaps to its final
+     value. */
+  function animateKpiBar(el){
+    var targetWidth = parseFloat(el.getAttribute('data-target-width'));
     var pctRaw = el.getAttribute('data-percent') || '0';
     var pct = parseFloat(pctRaw) || 0;
     var decimals = pctRaw.indexOf('.') !== -1 ? 1 : 0;
-    var wrap = el.closest('.kpi-ring-wrap');
-    var percentEl = wrap ? wrap.querySelector('.kpi-percent') : null;
+    var row = el.closest('.kpi-bar-row');
+    var percentEl = row ? row.querySelector('.kpi-percent') : null;
 
     if (reduceMotion){
-      el.style.strokeDashoffset = String(targetOffset);
+      el.style.width = targetWidth + '%';
       if (percentEl) percentEl.textContent = pct.toFixed(decimals) + '%';
       return;
     }
 
-    var duration = 1300;
+    var duration = 1100;
     var startTime = null;
     function step(ts){
       if (startTime === null) startTime = ts;
       var t = Math.min(1, (ts - startTime) / duration);
       var eased = 1 - Math.pow(1 - t, 3); /* ease-out cubic */
-      el.style.strokeDashoffset = String(startOffset + (targetOffset - startOffset) * eased);
+      el.style.width = (targetWidth * eased) + '%';
       if (percentEl) percentEl.textContent = (pct * eased).toFixed(decimals) + '%';
       if (t < 1){
         requestAnimationFrame(step);
       } else {
-        el.style.strokeDashoffset = String(targetOffset);
+        el.style.width = targetWidth + '%';
         if (percentEl) percentEl.textContent = pct.toFixed(decimals) + '%';
       }
     }
@@ -4203,10 +4342,10 @@
   staggerGroup('.loc-heading');
   staggerGroup('.idea-title, .idea-bulb-lit, .idea-text');
   staggerGroup('.goals-title, .goals-hint');
-  staggerGroup('.kpi-title, .kpi-subtitle, .kpi-ring-fg, .kpi-label, .kpi-numbers');
+  staggerGroup('.kpi-title, .kpi-subtitle, .kpi-bar-fill, .kpi-label, .kpi-numbers');
   staggerGroup('.results-title, .result-theme-head, .result-quote');
   staggerGroup('.voices-title, .voices-subtitle, .voice-card');
-  staggerGroup('.impact-title, .impact-subtitle, .impact-method, .impact-intro, .impact-item');
+  staggerGroup('.impact-title, .impact-subtitle, .impact-method, .impact-intro, .impact-num-big, .impact-item-text');
   staggerGroup('.hosts-title, .hosts-subtitle, .hosts-intro, .hosts-card, .hosts-reflection');
   staggerGroup('.chat-title, .chat-tag, .chat-bubble');
   staggerGroup('.risks-title, .risks-intro, .risks-card');
@@ -4219,8 +4358,8 @@
     var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
     setTimeout(function(){
       el.classList.add('is-visible');
-      if (el.hasAttribute('data-target-offset')){
-        animateKpiRing(el);
+      if (el.hasAttribute('data-target-width')){
+        animateKpiBar(el);
       }
     }, delay);
   }
