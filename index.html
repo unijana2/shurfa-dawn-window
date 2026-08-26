@@ -1157,14 +1157,34 @@
 
   .results-section{
     position:relative;
+    overflow:hidden;
     background:
       radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
       linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6.5rem;
   }
+  .results-bg-cloth{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:1500px;
+    max-width:none;
+    height:auto;
+    transform:translate(-50%,-50%) rotate(-7deg);
+    opacity:.2;
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-drag:none;
+    z-index:0;
+  }
   .results-inner{
+    position:relative;
+    z-index:1;
     max-width:860px;
     margin:0 auto;
+  }
+  @media (max-width: 700px){
+    .results-bg-cloth{ width:900px; }
   }
   .results-title{
     font-family:'Cairo', sans-serif;
@@ -1468,12 +1488,6 @@
     padding:0 0 .55rem;
     border-bottom:2px solid transparent;
   }
-  .impact-method-num{
-    font-family:'Cairo', sans-serif;
-    font-weight:800;
-    font-size:1.05rem;
-    color:rgba(42,23,16,.4);
-  }
   .impact-method-label{
     font-family:'Cairo', sans-serif;
     font-weight:500;
@@ -1483,7 +1497,6 @@
   .impact-method--active{
     border-bottom-color:var(--clay);
   }
-  .impact-method--active .impact-method-num{ color:var(--clay); }
   .impact-method--active .impact-method-label{
     color:var(--night-2);
     font-weight:700;
@@ -1531,21 +1544,6 @@
     border-bottom:1px solid rgba(42,23,16,.14);
     cursor:default;
   }
-  .impact-item::before{
-    content:'+';
-    position:absolute;
-    top:1.05rem;
-    inset-inline-start:1.3rem;
-    font-family:'Cairo', sans-serif;
-    font-weight:700;
-    font-size:1.1rem;
-    line-height:1;
-    color:rgba(42,23,16,.25);
-    transition:color .3s ease;
-  }
-  .impact-item:hover::before,
-  .impact-item:focus-within::before{ color:var(--clay); }
-
   .impact-item-rule{
     display:block;
     width:2.2rem;
@@ -1590,7 +1588,7 @@
   .impact-item:focus-within .impact-item-text{ transform:translateX(-6px); }
 
   @media (prefers-reduced-motion: reduce){
-    .impact-item-rule, .impact-num-big, .impact-item-text, .impact-item::before{ transition:none; }
+    .impact-item-rule, .impact-num-big, .impact-item-text{ transition:none; }
   }
 
   @media (max-width: 860px){
@@ -1607,7 +1605,6 @@
       border-bottom:none;
       border-top:1px solid rgba(42,23,16,.14);
     }
-    .impact-item::before{ inset-inline-start:0; }
     .impact-grid{ border-top:none; }
     .impact-item:first-child{ border-top:none; }
     .impact-num-big{ font-size:clamp(3.2rem, 14vw, 4.2rem); }
@@ -1635,6 +1632,18 @@
     font-size:clamp(2.185rem, 4.536vw, 3.105rem);
     color:var(--night-2);
     margin:0 0 .6rem;
+  }
+  .hosts-title--patch{
+    display:flex;
+    justify-content:center;
+    margin:0 0 .8rem;
+  }
+  .hosts-title-patch{
+    width:min(78%, 340px);
+    height:auto;
+    filter:drop-shadow(0 12px 24px rgba(42,23,16,.3));
+    user-select:none;
+    -webkit-user-drag:none;
   }
   .hosts-subtitle{
     display:flex;
@@ -1971,10 +1980,10 @@
   }
   .rec-note-text{
     position:absolute;
-    left:54%;
-    top:53%;
+    left:50%;
+    top:46%;
     transform:translate(-50%,-50%);
-    width:70%;
+    width:72%;
     font-family:'Cairo', sans-serif;
     font-weight:600;
     font-size:clamp(1.012rem, 1.836vw, 1.15rem);
@@ -1991,12 +2000,37 @@
 
   .coverage-section{
     position:relative;
+    overflow:visible;
     background:
       radial-gradient(120% 70% at 50% 0%, rgba(255,255,255,.5) 0%, transparent 55%),
       linear-gradient(180deg, #faf3e4 0%, var(--thread) 55%, #e9cd9c 100%);
     padding:5.5rem 1.5rem 6rem;
   }
+  .coverage-float-cam{
+    position:absolute;
+    top:-2.6rem;
+    right:8%;
+    width:min(30%, 190px);
+    height:auto;
+    filter:drop-shadow(0 16px 30px rgba(42,23,16,.32));
+    animation:coverageCamFloat 6.5s ease-in-out infinite;
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-drag:none;
+    z-index:2;
+  }
+  @keyframes coverageCamFloat{
+    0%,100%{ transform:translateY(0) rotate(-4deg); }
+    50%{ transform:translateY(-16px) rotate(-4deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .coverage-float-cam{ animation:none; }
+  }
+  @media (max-width: 640px){
+    .coverage-float-cam{ width:min(38%, 130px); top:-1.6rem; right:4%; }
+  }
   .coverage-inner{
+    position:relative;
     max-width:820px;
     margin:0 auto;
     text-align:center;
@@ -2301,11 +2335,10 @@
 
   .expand-reflection{
     font-family:'Cairo', sans-serif;
-    font-weight:700;
-    font-size:clamp(1.438rem, 3.132vw, 2.127rem);
-    line-height:1.85;
+    font-weight:500;
+    font-size:clamp(1.15rem, 2.052vw, 1.322rem);
+    line-height:2;
     color:#3c2410;
-    text-shadow:0 1px 0 rgba(255,255,255,.4);
     margin:0;
     opacity:0;
     will-change:opacity, transform;
@@ -2421,7 +2454,9 @@
     width:min(88%, 620px);
     max-width:92vw;
     transform:translate(-50%,-50%) translateY(175px) scale(.5);
-    background:linear-gradient(180deg, #fbf3e2 0%, #f4e6c8 100%);
+    background:url('letter-bg.webp');
+    background-size:cover;
+    background-position:center;
     border-radius:6px;
     box-shadow:0 30px 70px rgba(0,0,0,.55), 0 1px 0 rgba(255,255,255,.4) inset;
     padding:clamp(1.6rem, 4vw, 2.8rem) clamp(1.5rem, 4vw, 2.6rem);
@@ -3065,6 +3100,7 @@
 </div>
 
 <div class="results-section">
+  <img class="results-bg-cloth" src="gingham-cloth.webp" alt="" aria-hidden="true" />
   <div class="results-inner">
     <h2 class="results-title reveal">مِـن النتائج التنموية لدى المستفيدات</h2>
 
@@ -3229,11 +3265,9 @@
 
     <div class="impact-methods">
       <span class="impact-method reveal">
-        <span class="impact-method-num">٠١</span>
         <span class="impact-method-label">من خلال الاستبانات والقياس</span>
       </span>
       <span class="impact-method impact-method--active reveal">
-        <span class="impact-method-num">٠٢</span>
         <span class="impact-method-label">من خلال الملاحظة</span>
       </span>
     </div>
@@ -3278,7 +3312,7 @@
 
 <div class="hosts-section">
   <div class="hosts-inner">
-    <h2 class="hosts-title reveal">أثر البرنامج</h2>
+    <h2 class="hosts-title hosts-title--patch reveal"><img class="hosts-title-patch" src="title-patch.webp" alt="أثر البرنامج" /></h2>
     <p class="hosts-subtitle reveal">
       <img class="hosts-pin-icon" src="pin-location.webp" alt="" />
       <span>على بيئة مدارس تحفيظ القرآن الكريم</span>
@@ -3381,15 +3415,15 @@
     <p class="recs-intro reveal">اقتراحات:</p>
     <div class="recs-notes">
       <div class="rec-note reveal-pop" style="--rot-end:-4deg;">
-        <img class="rec-note-bg" src="note-blue.webp" alt="" />
+        <img class="rec-note-bg" src="note-unified.webp" alt="" />
         <p class="rec-note-text">استمرار شرفة في نسخ قادمة والتوسع في نطاق تنفيذه.</p>
       </div>
       <div class="rec-note reveal-pop" style="--rot-end:3deg;">
-        <img class="rec-note-bg" src="note-pink.webp" alt="" />
+        <img class="rec-note-bg" src="note-unified.webp" alt="" />
         <p class="rec-note-text">التوسع في الإعلان المسبق لتعزيز الوصول للفئة المستهدفة.</p>
       </div>
       <div class="rec-note reveal-pop" style="--rot-end:-2deg;">
-        <img class="rec-note-bg" src="note-yellow.webp" alt="" />
+        <img class="rec-note-bg" src="note-unified.webp" alt="" />
         <p class="rec-note-text">استمرار تعزيز الشراكات مع الجهات الداعمة لتنويع أماكن وموارد المشروع.</p>
       </div>
     </div>
@@ -3397,6 +3431,7 @@
 </div>
 
 <div class="coverage-section">
+  <img class="coverage-float-cam" src="camera-star.webp" alt="" aria-hidden="true" />
   <div class="coverage-inner">
     <h2 class="coverage-title reveal">التغطية الإعلامية</h2>
     <div class="coverage-placeholder reveal">سيتم إضافة التغطية هنا قريبًا.</div>
