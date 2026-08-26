@@ -2786,23 +2786,8 @@
     align-items:center;
     justify-content:center;
     overflow:hidden;
-    background:
-      radial-gradient(120% 90% at 50% 45%, rgba(127,214,230,.16) 0%, transparent 60%),
-      linear-gradient(180deg, var(--dawn-2) 0%, #e8b46a 100%);
+    background:#a7b7c1;
     padding:4rem 1.5rem;
-  }
-
-  .intro-glow{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:min(820px, 92vw);
-    height:min(420px, 60vw);
-    transform:translate(-50%,-50%);
-    background:radial-gradient(closest-side, rgba(255,252,240,.92), rgba(255,252,240,.35) 55%, rgba(255,252,240,0) 78%);
-    filter:blur(6px);
-    animation:introGlow 7s ease-in-out infinite;
-    pointer-events:none;
   }
 
   .intro-basmala{
@@ -2813,7 +2798,7 @@
     animation:
       introReveal 1.6s ease-out forwards,
       introFloat 6.5s ease-in-out 1.6s infinite;
-    filter:drop-shadow(0 6px 14px rgba(60,20,5,.3)) drop-shadow(0 0 34px rgba(255,255,255,.85)) drop-shadow(0 0 14px rgba(255,255,255,.6));
+    filter:drop-shadow(0 10px 22px rgba(20,30,40,.35));
     user-select:none;
     -webkit-user-drag:none;
   }
@@ -2825,10 +2810,6 @@
   @keyframes introFloat{
     0%,100%{ transform:translateY(0) scale(1); }
     50%{ transform:translateY(-14px) scale(1.015); }
-  }
-  @keyframes introGlow{
-    0%,100%{ opacity:.7; }
-    50%{ opacity:1; }
   }
 
   .intro-cue{
@@ -2842,7 +2823,6 @@
     .scroll-cue svg{ animation:none; }
     .star{ animation:none; opacity:.5; }
     .intro-basmala{ animation:introReveal .6s ease-out forwards; }
-    .intro-glow{ animation:none; opacity:.7; }
   }
 </style>
 
@@ -2877,7 +2857,6 @@
 </div>
 
 <div class="intro" id="intro">
-  <div class="intro-glow" aria-hidden="true"></div>
   <img class="intro-basmala" src="basmala.webp" alt="بسم الله الرحمن الرحيم" />
 </div>
 
