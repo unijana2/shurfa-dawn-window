@@ -300,25 +300,40 @@
     user-select:none;
     -webkit-user-drag:none;
   }
-  .suitcase-caption{
+  .suitcase-text{
     position:absolute;
     left:50%;
     top:50%;
     width:min(80%, 520px);
     transform:translate(-50%,-50%) translateY(14px);
     text-align:center;
-    font-family:'Cairo', sans-serif;
-    font-size:clamp(1.438rem, 3.564vw, 2.3rem);
-    line-height:1.9;
-    color:#fbf1e2;
-    text-shadow:0 2px 10px rgba(40,20,8,.5);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.5rem;
     opacity:0;
     filter:blur(5px);
     pointer-events:none;
     will-change:opacity, transform, filter;
   }
+  .suitcase-title{
+    margin:0;
+    font-family:'Cairo', sans-serif;
+    font-weight:800;
+    font-size:clamp(1.9rem, 4.4vw, 2.9rem);
+    color:#fbf1e2;
+    text-shadow:0 3px 14px rgba(40,20,8,.55);
+  }
+  .suitcase-caption{
+    margin:0;
+    font-family:'Cairo', sans-serif;
+    font-size:clamp(1.438rem, 3.564vw, 2.3rem);
+    line-height:1.9;
+    color:#fbf1e2;
+    text-shadow:0 2px 10px rgba(40,20,8,.5);
+  }
   @media (prefers-reduced-motion: reduce){
-    .suitcase-caption{ filter:none; }
+    .suitcase-text{ filter:none; }
   }
 
   .outputs-cue{
@@ -441,12 +456,12 @@
     width:min(360px, 76vw);
     margin:0 auto;
   }
-  .stat-tag--quote .tag-text{ width:76%; }
+  .stat-tag--quote .tag-text{ width:66%; top:56%; }
   .stat-tag--quote .tag-label{
     font-family:'Cairo', sans-serif;
     font-weight:700;
-    font-size:clamp(1.3rem, 2.8vw, 1.75rem);
-    line-height:1.5;
+    font-size:clamp(.92rem, 1.9vw, 1.18rem);
+    line-height:1.4;
   }
 
   .stats-hero{
@@ -2065,16 +2080,17 @@
     margin:0 auto;
   }
   .day-card{
-    display:block;
-    text-decoration:none;
-    color:inherit;
-    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
   .day-photos{
     position:relative;
     width:100%;
     aspect-ratio:4/5;
     margin:0 0 1.1rem;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
   }
   .day-photo{
     position:absolute;
@@ -2085,14 +2101,33 @@
     border-radius:.6rem;
     border:5px solid #fffdf8;
     box-shadow:0 10px 22px rgba(42,23,16,.28);
-    transition:transform .4s cubic-bezier(.22,.61,.36,1), box-shadow .4s ease;
+    transition:transform .5s cubic-bezier(.22,.61,.36,1), box-shadow .5s ease;
   }
-  .day-photo--1{ transform:rotate(-7deg) translate(-8%, 2%); z-index:1; }
-  .day-photo--2{ transform:rotate(4deg) translate(7%, -1%); z-index:2; }
-  .day-photo--3{ transform:rotate(-2deg) translate(0, 4%) scale(1.02); z-index:3; }
-  .day-card:hover .day-photo--1, .day-card:focus-visible .day-photo--1{ transform:rotate(-14deg) translate(-20%, -4%); }
-  .day-card:hover .day-photo--2, .day-card:focus-visible .day-photo--2{ transform:rotate(11deg) translate(20%, -6%); }
-  .day-card:hover .day-photo--3, .day-card:focus-visible .day-photo--3{ transform:rotate(-2deg) translate(0, 8%) scale(1.05); box-shadow:0 16px 30px rgba(42,23,16,.34); }
+  .day-photo--1{ transform:rotate(-7deg) translate(-8%, 2%) scale(.93); z-index:1; }
+  .day-photo--2{ transform:rotate(4deg) translate(7%, -1%) scale(.97); z-index:2; }
+  .day-photo--3{ transform:rotate(-2deg) translate(0, 2%) scale(1.02); z-index:3; box-shadow:0 15px 28px rgba(42,23,16,.34); }
+  .day-photos:hover .day-photo--3, .day-photos:focus-visible .day-photo--3{ transform:rotate(-2deg) translate(0, -2%) scale(1.04); }
+  .day-photos::after{
+    content:'↻';
+    position:absolute;
+    bottom:.5rem;
+    left:.5rem;
+    width:1.75rem;
+    height:1.75rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(251,241,226,.94);
+    border:1px solid rgba(185,133,63,.45);
+    border-radius:50%;
+    font-size:1.02rem;
+    color:var(--night-2);
+    box-shadow:0 5px 12px rgba(42,23,16,.28);
+    z-index:5;
+    pointer-events:none;
+    transition:transform .3s ease;
+  }
+  .day-photos:active::after{ transform:scale(.86) rotate(-30deg); }
   .day-label{
     display:flex;
     align-items:center;
@@ -2102,16 +2137,27 @@
     font-weight:700;
     font-size:clamp(.98rem, 1.6vw, 1.1rem);
     color:var(--night-2);
+    margin:0 0 .55rem;
   }
-  .day-label-more{
+  .day-link{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
     font-family:'Cairo', sans-serif;
-    font-weight:500;
+    font-weight:600;
     font-size:.82rem;
     color:var(--amber);
-    display:block;
-    text-align:center;
-    margin:.15rem 0 0;
-    opacity:.85;
+    text-decoration:none;
+    padding:.4rem 1rem;
+    border:1.5px solid rgba(196,140,60,.38);
+    border-radius:999px;
+    background:rgba(255,253,248,.55);
+    transition:background .25s ease, border-color .25s ease, transform .2s ease;
+  }
+  .day-link:hover, .day-link:focus-visible{
+    background:rgba(196,140,60,.14);
+    border-color:rgba(196,140,60,.65);
+    transform:translateY(-1px);
   }
   @media (max-width: 860px){
     .coverage-gallery{ grid-template-columns:repeat(2, 1fr); gap:2.6rem 1.4rem; }
@@ -2314,12 +2360,12 @@
     pointer-events:none;
   }
   .expand-point-dot{
-    width:13px;
-    height:13px;
+    width:9px;
+    height:9px;
     border-radius:50%;
     background:var(--clay);
-    border:2px solid #fbf1e2;
-    box-shadow:0 3px 8px rgba(60,20,10,.4);
+    border:1.5px solid #fbf1e2;
+    box-shadow:0 2px 6px rgba(60,20,10,.4);
   }
   .expand-point-label{
     position:absolute;
@@ -2816,7 +2862,10 @@
       <img class="suitcase-frame" src="f28.webp">
       <img class="suitcase-frame" src="f29.webp">
       <img class="suitcase-frame" src="f30.webp">
-      <p class="suitcase-caption" id="suitcaseCaption">توسع النطاق الجغرافي للبرنامج ليشمل مدينة الرياض ومحافظتي الدوادمي ورماح</p>
+      <div class="suitcase-text" id="suitcaseText">
+        <h3 class="suitcase-title">المخرجات</h3>
+        <p class="suitcase-caption" id="suitcaseCaption">توسع النطاق الجغرافي للبرنامج ليشمل مدينة الرياض ومحافظتي الدوادمي ورماح</p>
+      </div>
     </div>
 
     <div class="outputs-cue" id="outputsCue">
@@ -3505,113 +3554,113 @@
     <h2 class="coverage-title reveal">عدسة البرنامج</h2>
     <p class="coverage-subtitle reveal">اضغطي على أي يوم لمشاهدة بقية الصور والتغطية</p>
     <div class="coverage-gallery">
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1bztGFh2jYLXfgoJRJMBKXgl-UlZE6Mi7?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم الأول">
           <img class="day-photo day-photo--1" src="day1_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day1_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day1_3.webp" alt="اليوم الأول" />
         </div>
         <div class="day-label">اليوم الأول</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/10MapVfNkBYUEYbBrTlNU48OW6A8xbqVg?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/1bztGFh2jYLXfgoJRJMBKXgl-UlZE6Mi7?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم الثاني">
           <img class="day-photo day-photo--1" src="day2_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day2_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day2_3.webp" alt="اليوم الثاني" />
         </div>
         <div class="day-label">اليوم الثاني</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1egMr9MspWTqSsiwrHU18lnL1NBNF0eLd?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/10MapVfNkBYUEYbBrTlNU48OW6A8xbqVg?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم الثالث">
           <img class="day-photo day-photo--1" src="day3_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day3_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day3_3.webp" alt="اليوم الثالث" />
         </div>
         <div class="day-label">اليوم الثالث</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1Sxkwv8ZC5crK6SAvJNCx100Yoj7ErZ-n?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/1egMr9MspWTqSsiwrHU18lnL1NBNF0eLd?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم الرابع">
           <img class="day-photo day-photo--1" src="day4_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day4_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day4_3.webp" alt="اليوم الرابع" />
         </div>
         <div class="day-label">اليوم الرابع</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1wV9lOFFVniffFknENq-ESHgDvG7X7W_p?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/1Sxkwv8ZC5crK6SAvJNCx100Yoj7ErZ-n?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم الخامس">
           <img class="day-photo day-photo--1" src="day5_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day5_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day5_3.webp" alt="اليوم الخامس" />
         </div>
         <div class="day-label">اليوم الخامس</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/13CS0uyrOu7et0FSS7FKiztiqsrrARNwd?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/1wV9lOFFVniffFknENq-ESHgDvG7X7W_p?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم السادس">
           <img class="day-photo day-photo--1" src="day6_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day6_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day6_3.webp" alt="اليوم السادس" />
         </div>
         <div class="day-label">اليوم السادس</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1xLyVzO5BX_feffsEXCoTZfB_8LqNLiYe?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/13CS0uyrOu7et0FSS7FKiztiqsrrARNwd?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم السابع">
           <img class="day-photo day-photo--1" src="day7_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day7_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day7_3.webp" alt="اليوم السابع" />
         </div>
         <div class="day-label">اليوم السابع</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1AxAjN7dcL-atM7_XofchHp3HynXzQeFV?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/1xLyVzO5BX_feffsEXCoTZfB_8LqNLiYe?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم الثامن">
           <img class="day-photo day-photo--1" src="day8_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day8_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day8_3.webp" alt="اليوم الثامن" />
         </div>
         <div class="day-label">اليوم الثامن</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/10A8319R-MD7qjPyLZqkzhOg4xm-A54BL?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/1AxAjN7dcL-atM7_XofchHp3HynXzQeFV?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم التاسع">
           <img class="day-photo day-photo--1" src="day9_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day9_2.webp" alt="اليوم التاسع" />
         </div>
         <div class="day-label">اليوم التاسع</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1sWovuh5zbrTBSIPpgBQg1IG8px0Li_ms?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/10A8319R-MD7qjPyLZqkzhOg4xm-A54BL?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم العاشر">
           <img class="day-photo day-photo--1" src="day10_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day10_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day10_3.webp" alt="اليوم العاشر" />
         </div>
         <div class="day-label">اليوم العاشر</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1ZnZVnecciDnnU5dQdAqdArzMbKouHwKi?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/1sWovuh5zbrTBSIPpgBQg1IG8px0Li_ms?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور اليوم الحادي عشر">
           <img class="day-photo day-photo--1" src="day11_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="day11_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="day11_3.webp" alt="اليوم الحادي عشر" />
         </div>
         <div class="day-label">اليوم الحادي عشر</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
-      <a class="day-card reveal-pop" href="https://drive.google.com/drive/folders/1BoO0VXEnlRdymsaRF6BOeQvpZzCyzKBu?usp=sharing" target="_blank" rel="noopener">
-        <div class="day-photos">
+        <a class="day-link" href="https://drive.google.com/drive/folders/1ZnZVnecciDnnU5dQdAqdArzMbKouHwKi?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
+      <div class="day-card reveal-pop">
+        <div class="day-photos" role="button" tabindex="0" aria-label="اضغطي لتقليب صور الحفل الختامي">
           <img class="day-photo day-photo--1" src="closing_1.webp" alt="" />
           <img class="day-photo day-photo--2" src="closing_2.webp" alt="" />
           <img class="day-photo day-photo--3" src="closing_3.webp" alt="الحفل الختامي" />
         </div>
         <div class="day-label">الحفل الختامي</div>
-        <span class="day-label-more">مشاهدة المزيد ↗</span>
-      </a>
+        <a class="day-link" href="https://drive.google.com/drive/folders/1BoO0VXEnlRdymsaRF6BOeQvpZzCyzKBu?usp=sharing" target="_blank" rel="noopener">مشاهدة كل الصور والتغطية ↗</a>
+      </div>
     </div>
   </div>
 </div>
@@ -3930,7 +3979,7 @@
 
   var outputsTrack = document.getElementById('outputsTrack');
   var outputsCue = document.getElementById('outputsCue');
-  var suitcaseCaption = document.getElementById('suitcaseCaption');
+  var suitcaseText = document.getElementById('suitcaseText');
   var suitcaseFrames = Array.prototype.slice.call(document.querySelectorAll('.suitcase-frame'));
 
   /* the frame scrub finishes (suitcase fully open) by OUT_OPEN; the rest of
@@ -3952,11 +4001,11 @@
     });
     if (outputsCue) outputsCue.style.opacity = String(clamp(1 - p * 6, 0, 1));
 
-    if (suitcaseCaption){
+    if (suitcaseText){
       var textP = easeInOutCubic(clamp((p - OUT_TEXT_START) / (OUT_TEXT_FULL - OUT_TEXT_START), 0, 1));
-      suitcaseCaption.style.opacity = String(textP);
-      suitcaseCaption.style.transform = 'translate(-50%,-50%) translateY(' + lerp(14, 0, textP) + 'px)';
-      suitcaseCaption.style.filter = 'blur(' + lerp(5, 0, textP) + 'px)';
+      suitcaseText.style.opacity = String(textP);
+      suitcaseText.style.transform = 'translate(-50%,-50%) translateY(' + lerp(14, 0, textP) + 'px)';
+      suitcaseText.style.filter = 'blur(' + lerp(5, 0, textP) + 'px)';
     }
   }
 
@@ -4557,6 +4606,32 @@
   staggerGroup('.risks-title, .risks-intro, .risks-card');
   staggerGroup('.recs-title, .recs-intro, .rec-note');
   staggerGroup('.coverage-title, .coverage-subtitle, .day-card');
+
+  /* ---------------- coverage gallery: click-to-flip photo stack ---------------- */
+  Array.prototype.slice.call(document.querySelectorAll('.day-photos')).forEach(function(stack){
+    function cyclePhotos(){
+      var imgs = Array.prototype.slice.call(stack.querySelectorAll('.day-photo'));
+      var n = imgs.length;
+      if (n < 2) return;
+      imgs.forEach(function(img){
+        var depthClass = Array.prototype.slice.call(img.classList).filter(function(c){
+          return /^day-photo--\d+$/.test(c);
+        })[0];
+        if (!depthClass) return;
+        var d = parseInt(depthClass.split('--')[1], 10);
+        var nd = (d === n) ? 1 : d + 1;
+        img.classList.remove(depthClass);
+        img.classList.add('day-photo--' + nd);
+      });
+    }
+    stack.addEventListener('click', cyclePhotos);
+    stack.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        cyclePhotos();
+      }
+    });
+  });
 
   var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal, .reveal-pop'));
   function revealOne(el){
