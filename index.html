@@ -1504,33 +1504,14 @@
     letter-spacing:.04em;
   }
 
-  /* methodology tabs — 02 (observation) is the visually active one */
+  /* methodology line — a plain secondary heading, not tabs */
   .impact-methods{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:2.2rem;
-    margin:0 0 1.3rem;
-  }
-  .impact-method{
-    display:inline-flex;
-    align-items:baseline;
-    gap:.5rem;
-    padding:0 0 .55rem;
-    border-bottom:2px solid transparent;
-  }
-  .impact-method-label{
+    text-align:center;
     font-family:'Cairo', sans-serif;
-    font-weight:500;
-    font-size:1.03rem;
-    color:rgba(42,23,16,.42);
-  }
-  .impact-method--active{
-    border-bottom-color:var(--clay);
-  }
-  .impact-method--active .impact-method-label{
-    color:var(--night-2);
-    font-weight:700;
+    font-weight:600;
+    font-size:clamp(1.05rem, 1.9vw, 1.25rem);
+    color:rgba(42,23,16,.62);
+    margin:0 0 1.3rem;
   }
 
   .impact-rule{
@@ -1671,7 +1652,6 @@
     .impact-item:first-child{ border-top:none; }
     .impact-num-big{ font-size:clamp(3.2rem, 14vw, 4.2rem); }
     .impact-item-text{ max-width:none; }
-    .impact-methods{ gap:1.4rem; }
   }
 
   /* ---------- program impact: hosting institutions (quran memorization schools) ---------- */
@@ -3494,14 +3474,7 @@
     <h2 class="impact-title reveal">تحليل الأثر</h2>
     <p class="impact-subtitle reveal">المستفيدات</p>
 
-    <div class="impact-methods">
-      <span class="impact-method reveal">
-        <span class="impact-method-label">من خلال الاستبانات والقياس</span>
-      </span>
-      <span class="impact-method impact-method--active reveal">
-        <span class="impact-method-label">من خلال الملاحظة</span>
-      </span>
-    </div>
+    <p class="impact-methods reveal">من خلال الاستبانات والقياس، ومن خلال الملاحظة</p>
     <hr class="impact-rule" />
 
     <p class="impact-intro reveal">تمت ملاحظة عدد من التغيرات لدى المستفيدات أثناء تنفيذ البرنامج، أبرزها:</p>
@@ -4736,7 +4709,7 @@
   staggerGroup('.kpi-title, .kpi-subtitle, .kpi-bar-fill, .kpi-label, .kpi-numbers');
   staggerGroup('.results-title, .result-theme-head, .result-quote');
   staggerGroup('.voices-title, .voices-subtitle, .voice-card');
-  staggerGroup('.impact-title, .impact-subtitle, .impact-method, .impact-intro, .impact-num-big, .impact-item-text');
+  staggerGroup('.impact-title, .impact-subtitle, .impact-methods, .impact-intro, .impact-num-big, .impact-item-text');
   staggerGroup('.hosts-title, .hosts-subtitle, .hosts-intro, .hosts-card, .hosts-reflection');
   staggerGroup('.chat-title, .chat-tag, .chat-bubble');
   staggerGroup('.risks-title, .risks-intro, .risks-card');
