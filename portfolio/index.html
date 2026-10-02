@@ -107,6 +107,75 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(7
   .visual .frame.heroimg{grid-column:auto !important;}
 }
 </style>
+
+<style id="direct-image-layout-v3">
+/* Direct project images: no frames, no borders, no rotation, no forced crop */
+.visual{
+  position:relative !important;
+  min-height:0 !important;
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:14px !important;
+  align-content:start !important;
+  padding:0 !important;
+}
+.visual .frame{
+  position:relative !important;
+  inset:auto !important;
+  left:auto !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:auto !important;
+  width:100% !important;
+  height:auto !important;
+  transform:none !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  overflow:visible !important;
+}
+.visual .frame.heroimg{
+  grid-column:1 / -1 !important;
+}
+.visual .frame img{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  max-height:none !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  border-radius:12px !important;
+  background:transparent !important;
+  transform:none !important;
+}
+.posterProject .visual{
+  display:block !important;
+  min-height:0 !important;
+}
+.posterProject .visual .heroimg{
+  width:100% !important;
+}
+.folder{
+  border:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+.folder .bar{
+  display:none !important;
+}
+.folder img{
+  width:100% !important;
+  height:auto !important;
+  object-fit:contain !important;
+  border-radius:14px !important;
+}
+@media(max-width:900px){
+  .visual{grid-template-columns:1fr !important;}
+  .visual .frame.heroimg{grid-column:auto !important;}
+}
+</style>
 </head>
 <body>
 <div class="noise"></div><div class="gridbg"></div>
