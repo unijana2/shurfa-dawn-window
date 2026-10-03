@@ -1,0 +1,9 @@
+01-cover bytes=152101 dims=600x337
+02-contents bytes=31243 dims=600x337
+03-intro bytes=135658 dims=600x337
+04-vision bytes=28552 dims=600x337
+05-challenge bytes=249600 dims=600x337
+06-goal bytes=30917 dims=600x337
+07-creative bytes=168842 dims=600x337
+08-execution bytes=33435 dims=600x337
+09-metrics bytes=39360 dims=600x337
