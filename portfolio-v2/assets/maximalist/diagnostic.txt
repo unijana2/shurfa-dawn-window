@@ -1,3 +1,15 @@
-EXACT status=200 bytes=23046 mime=image/png dims=
-HI status=403 bytes=17 mime=text/plain dims=
-NODIMS status=403 bytes=17 mime=text/plain dims=
+01 status=200 bytes=65996 dims=596x335
+02 status=200 bytes=8364 dims=596x335
+03 status=200 bytes=59759 dims=596x335
+04 status=200 bytes=7824 dims=596x335
+05 status=200 bytes=96010 dims=596x335
+06 status=200 bytes=8757 dims=596x335
+07 status=200 bytes=71746 dims=596x335
+08 status=200 bytes=68719 dims=596x335
+09 status=200 bytes=8148 dims=596x335
+10 status=200 bytes=7218 dims=596x335
+11 status=200 bytes=77992 dims=596x335
+12 status=200 bytes=9087 dims=596x335
+13 status=200 bytes=73443 dims=596x335
+14 status=200 bytes=8038 dims=596x335
+15 status=200 bytes=5888 dims=596x335
