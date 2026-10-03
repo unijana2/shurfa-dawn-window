@@ -1,0 +1,40 @@
+name: Import Maximalist slide images
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-maximalist.yml'
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download full-resolution slide images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p portfolio-v2/assets/maximalist
+          python3 - <<'PY'
+          import urllib.request, pathlib
+          items = [["01-cover.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2Fc7d76656-2fcd-4a2e-870f-b720d3390178/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAHikm5Q4tlfWNGgX_e1Si1z6i1SK60xPvFLu3DGlpZGY&exp=1791055615&osig=AAAAAAAAAAAAAAAAAAAAABUKtLX5KAJ8qQSD5tXhiSu4tM1fB4QSteX2HFN2az81&signer=media-rpc&token=AAIAAU0AJGM3ZDc2NjU2LTJmY2QtNGEyZS04NzBmLWI3MjBkMzM5MDE3OAAAAAABoQM71BhfFxjArmBn3IoeVaIx--pwQqDPxKctcCatcWrpY-7nvA&x-canva-quality=thumbnail"],["02-contents.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2F8b1f7204-2d7f-4eed-9de9-8dae79cba535/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAFycDy8Kizvy2aTnTBcAXgweC370YJ5kYNOEZQY30k-n&exp=1791056737&osig=AAAAAAAAAAAAAAAAAAAAAPSJ1Xb-fQjOXk1h2Dyur82b2QJKWRfu3gV3E841k7Bf&signer=media-rpc&token=AAIAAU0AJDhiMWY3MjA0LTJkN2YtNGVlZC05ZGU5LThkYWU3OWNiYTUzNQAAAAABoQNM8uiorDHFdUboBQYsCCfzPcni9xoqQHWXEPDH3YbGVEpvLQ&x-canva-quality=thumbnail"],["03-intro.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2Fffb342d0-f958-4a87-9ddc-3cc16d8f42ab/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAORwAtDf1iy4kmwvHYkQb7EP5GNydPIbalzjqbL3KOhv&exp=1791057137&osig=AAAAAAAAAAAAAAAAAAAAAICFYO2gcykX7v7fvPmIKWf49ytHoczHvcPQVrlt5pGR&signer=media-rpc&token=AAIAAU0AJGZmYjM0MmQwLWY5NTgtNGE4Ny05ZGRjLTNjYzE2ZDhmNDJhYgAAAAABoQNTDWgBgRgPxpXqSiq33CPzjWapbIJMgtONmw4WMkEQw0NCzw&x-canva-quality=thumbnail"],["04-vision.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2F4cce4b74-2804-46e1-81f0-ea356cdd24c6/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAKaZmyqiZozyZbFBicwCxfAxs8O2lcUFcPZZCLjCGppx&exp=1791055495&osig=AAAAAAAAAAAAAAAAAAAAABcIzIY_jYAa3HicNOSJ-uCHnJ1yc8FeVtzD1srXdMXw&signer=media-rpc&token=AAIAAU0AJDRjY2U0Yjc0LTI4MDQtNDZlMS04MWYwLWVhMzU2Y2RkMjRjNgAAAAABoQM5_1iI_ziYp9cJrUrRm-Onx4C47DS0dYnmT3UhcyjusSHn9A&x-canva-quality=thumbnail"],["05-challenge.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2Fed2d021b-2545-4fba-b33f-03442467be10/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAKXJlvNb1mz-bWbw_cUMyxzSPz4VEOK8S2yjoIa035qB&exp=1791056835&osig=AAAAAAAAAAAAAAAAAAAAAPk0kG9e-xOgXwrsJ6V5z_jNBIKmcun-aIN1IoQzoEAr&signer=media-rpc&token=AAIAAU0AJGVkMmQwMjFiLTI1NDUtNGZiYS1iMzNmLTAzNDQyNDY3YmUxMAAAAAABoQNOcbhaC8GtKu0Dyf1GnRyi3ucddXONvrv6rVwBvn5O51lBSg&x-canva-quality=thumbnail"],["06-goal.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2F852de681-5756-4738-becc-f3be340bb135/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAK48d8QoIKR05hTlZKjBJkpG30leGbWMR-X22eAF7Jrf&exp=1791057391&osig=AAAAAAAAAAAAAAAAAAAAAJPv1ZzdzIxPhyIAU3sDvlZyy7hB5yGBTO38fptPEk_l&signer=media-rpc&token=AAIAAU0AJDg1MmRlNjgxLTU3NTYtNDczOC1iZWNjLWYzYmUzNDBiYjEzNQAAAAABoQNW7ZggYx4txWT2TWtZxVjuE6GaydXkA7sesvfhgHWNfPRPCg&x-canva-quality=thumbnail"],["07-creative.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2F4035f706-88ff-4b57-9d5d-d9aa0572f679/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAFU8rGwIG70EDENtlVZ9EeKXchbF5vq4Ct7P79-hTDab&exp=1791057161&osig=AAAAAAAAAAAAAAAAAAAAAE7QbsQVZcVFTKGG-PbiPPIZeheJ1Pdp500ItBiSSVAa&signer=media-rpc&token=AAIAAU0AJDQwMzVmNzA2LTg4ZmYtNGI1Ny05ZDVkLWQ5YWEwNTcyZjY3OQAAAAABoQNTayg7kVsmOV60R84YFt9pu2I6cGJ9VJl-r5rQgBIKK8aFaA&x-canva-quality=thumbnail"],["08-execution.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2F29ce62c2-56a8-4ac4-91a1-2e7156c07f13/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAFQGsqh3TOrNmUi-ZpYSGXlSi8wuOm_SfReqRt-3cBm4&exp=1791057083&osig=AAAAAAAAAAAAAAAAAAAAAHYqnPMai-CWsPz21cfFs0kur5XKTfabpuEXU6iQhz2q&signer=media-rpc&token=AAIAAU0AJDI5Y2U2MmMyLTU2YTgtNGFjNC05MWExLTJlNzE1NmMwN2YxMwAAAAABoQNSOnhtpKLY7Kw4_61tdHULnOcjghHKdnC8Hg9jRnOUczYchA&x-canva-quality=thumbnail"],["09-metrics.png","https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2F0ce7e81b-f491-47f0-afc6-8f2d4612261c/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAHUiZiMkOL7cfcwZLgzQQ05mZiMTg0ssfjjsUTGuIK5U&exp=1791057358&osig=AAAAAAAAAAAAAAAAAAAAAFmeEPC4yzMyx9XODHYpr9g8vaUcR1vquiDvtF-E-1-B&signer=media-rpc&token=AAIAAU0AJDBjZTdlODFiLWY0OTEtNDdmMC1hZmM2LThmMmQ0NjEyMjYxYwAAAAABoQNWbLCjvfAzLkJdRq25FHjhzyJKzLDSK7Nhynd_0DWcoKJsew&x-canva-quality=thumbnail"]]
+          out = pathlib.Path("portfolio-v2/assets/maximalist")
+          for name,url in items:
+              hi = url.replace("height:112","height:1080").replace("width:200","width:1920").replace("x-canva-quality=thumbnail","x-canva-quality=print")
+              print("Downloading", name)
+              req=urllib.request.Request(hi,headers={"User-Agent":"Mozilla/5.0"})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  data=r.read()
+              print(name, len(data), r.headers.get("Content-Type"))
+              if len(data) < 20000:
+                  raise RuntimeError(f"{name} download too small: {len(data)}")
+              (out/name).write_bytes(data)
+          PY
+      - name: Commit slide assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portfolio-v2/assets/maximalist
+          git commit -m "Add high-resolution Maximalist Editorial Pitch slides"
+          git push
