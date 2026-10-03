@@ -254,6 +254,32 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(7
 .template-deck.is-portrait{width:min(100%,540px)!important;max-width:540px!important}
 @media(max-width:760px){.template-stack-visual,.template-deck,.template-deck.is-portrait{max-width:100%!important;width:100%!important}}
 </style>
+<style id="hamish-maximalist-size-match">
+/* Match HAMISH + Maximalist image-stack size to the other portfolio projects */
+.maximalist-visual{
+  width:100%!important;
+  max-width:790px!important;
+  margin:0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  grid-template-columns:none!important;
+  overflow:visible!important;
+}
+.maximalist-visual .max-deck,
+.maximalist-visual .hamish-deck{
+  width:min(100%,790px)!important;
+  max-width:790px!important;
+}
+@media(max-width:760px){
+  .maximalist-visual,
+  .maximalist-visual .max-deck,
+  .maximalist-visual .hamish-deck{
+    width:100%!important;
+    max-width:100%!important;
+  }
+}
+</style>
 </head>
 <body>
 <div class="noise"></div><div class="gridbg"></div>
