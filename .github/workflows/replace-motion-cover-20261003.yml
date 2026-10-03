@@ -1,0 +1,48 @@
+name: Replace Motion cover
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/replace-motion-cover-20261003.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch uploaded Motion image blob
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p portfolio-v2/assets/motion
+          curl -fsSL             -H "Authorization: Bearer $GH_TOKEN"             -H "Accept: application/vnd.github+json"             "https://api.github.com/repos/unijana2/shurfa-dawn-window/git/blobs/433250cd6820c1456ee5951bc4b75bef551b44ec"             | jq -r '.content' | tr -d '\n' | base64 -d > portfolio-v2/assets/motion/cover.webp
+      - name: Replace MOTION visual
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path("portfolio-v2/index.html")
+          s = p.read_text(encoding="utf-8")
+          idx = s.index("PROJECT / 01")
+          st = s.rfind("<article", 0, idx)
+          en = s.index("</article>", idx) + len("</article>")
+          art = s[st:en]
+          new_visual = '<div class="visual"><img src="assets/motion/cover.webp" alt="MOTION sports editorial magazine cover" loading="eager" decoding="async"></div>'
+          art2, n = re.subn(r'<div class="visual">.*?</div>(?=</div></article>)', new_visual, art, count=1, flags=re.S)
+          if n != 1:
+              raise RuntimeError("Could not replace MOTION visual")
+          s = s[:st] + art2 + s[en:]
+          p.write_text(s, encoding="utf-8")
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portfolio-v2/index.html portfolio-v2/assets/motion/cover.webp
+          git commit -m "Replace MOTION cover image"
+          git push
