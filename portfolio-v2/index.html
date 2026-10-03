@@ -392,4 +392,94 @@ els.forEach(el=>io.observe(el));
 })();
 </script>
 
+
+<script id="shared-template-stacks">
+(function(){
+  const targets=new Set(['02','04','07','08','09']);
+  document.querySelectorAll('.project').forEach(project=>{
+    const meta=project.querySelector('.pmeta span');
+    if(!meta) return;
+    const match=meta.textContent.match(/PROJECT\s*\/\s*(\d+)/i);
+    if(!match) return;
+    const num=match[1].padStart(2,'0');
+    if(!targets.has(num)) return;
+
+    const visual=project.querySelector('.visual');
+    if(!visual || visual.dataset.stacked==='1') return;
+    const imgs=[...visual.querySelectorAll('img')];
+    if(imgs.length<2) return;
+
+    visual.dataset.stacked='1';
+    visual.classList.add('template-stack-visual');
+
+    const deck=document.createElement('div');
+    deck.className='template-deck';
+    deck.tabIndex=0;
+    deck.setAttribute('role','button');
+    deck.setAttribute('aria-label','Browse project images. Click to show the next image.');
+
+    const stack=document.createElement('div');
+    stack.className='template-stack';
+
+    imgs.forEach((img,i)=>{
+      const card=document.createElement('figure');
+      card.className='template-card';
+      card.style.setProperty('--i',i);
+      card.style.zIndex=String(30-i);
+      const clone=img.cloneNode(true);
+      clone.loading=i===0?'eager':'lazy';
+      clone.decoding='async';
+      card.appendChild(clone);
+      stack.appendChild(card);
+    });
+
+    const ui=document.createElement('div');
+    ui.className='template-deck-ui';
+    ui.innerHTML='<span>CLICK · NEXT IMAGE</span><span class="template-deck-count"><b>01</b> / '+String(imgs.length).padStart(2,'0')+'</span>';
+
+    visual.innerHTML='';
+    deck.append(stack,ui);
+    visual.appendChild(deck);
+
+    const first=stack.querySelector('img');
+    const setRatio=()=>{
+      const w=first.naturalWidth||16, h=first.naturalHeight||9;
+      deck.style.aspectRatio=w+' / '+(h + Math.max(1,Math.round(h*0.075)));
+      deck.classList.toggle('is-portrait',h>w*1.12);
+      deck.classList.toggle('is-square',Math.abs(w-h)/Math.max(w,h)<.12);
+      deck.classList.toggle('is-landscape',w>h*1.12);
+    };
+    if(first.complete) setRatio(); else first.addEventListener('load',setRatio,{once:true});
+
+    let current=1,busy=false;
+    function normalize(){
+      [...stack.children].forEach((el,i)=>{
+        el.style.setProperty('--i',i);
+        el.style.zIndex=String(30-i);
+        el.classList.remove('is-leaving');
+      });
+    }
+    function next(){
+      if(busy)return;
+      busy=true;
+      const top=stack.firstElementChild;
+      if(!top){busy=false;return}
+      top.classList.add('is-leaving');
+      setTimeout(()=>{
+        stack.appendChild(top);
+        current=current%stack.children.length+1;
+        ui.querySelector('b').textContent=String(current).padStart(2,'0');
+        normalize();
+        busy=false;
+      },360);
+    }
+    deck.addEventListener('click',next);
+    deck.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();next()}
+    });
+    normalize();
+  });
+})();
+</script>
+
 </body></html>
