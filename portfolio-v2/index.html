@@ -29,6 +29,59 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(7
 .workhead{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:28px}.count{font-family:Georgia,serif;font-size:82px;color:var(--lav);line-height:.8}.workgrid{display:grid;gap:28px}.project{position:relative;border:1px solid var(--line);border-radius:32px;background:rgba(255,255,255,.57);overflow:hidden;box-shadow:0 22px 60px rgba(52,39,72,.08)}.project:nth-child(even){background:rgba(247,243,255,.78)}.pmeta{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.14em;text-transform:uppercase}.pbody{display:grid;grid-template-columns:.42fr .58fr;gap:24px;padding:28px}.ptitle{font-family:Georgia,serif;font-size:clamp(42px,5vw,82px);font-weight:400;line-height:.9;letter-spacing:-.05em;margin:0 0 18px}.psub{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}.pdesc{font-size:16px;line-height:1.65;color:#4c4651;max-width:560px}.ptags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}.ptag{font-size:9px;letter-spacing:.12em;border:1px solid var(--line);border-radius:999px;padding:8px 10px;text-transform:uppercase}.visual{position:relative;min-height:620px}.frame{position:absolute;border:1px solid rgba(30,24,40,.16);background:#f8f5ef;border-radius:18px;padding:8px;box-shadow:0 20px 45px rgba(40,31,55,.13);overflow:hidden}.frame img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:11px;background:#f8f5ef;image-rendering:auto}.heroimg{inset:2% 4% 6% 4%;transform:none}.small1{right:-1%;bottom:0;width:39%;height:36%;transform:rotate(1deg)}.small2{left:-1%;bottom:-1%;width:35%;height:34%;transform:rotate(-1deg)}.project:nth-child(even) .heroimg{inset:2% 4% 6% 4%;transform:none}.project:nth-child(even) .small1{right:auto;left:-1%;transform:rotate(-1deg)}.project:nth-child(even) .small2{left:auto;right:-1%;transform:rotate(1deg)}
 .posterProject .pbody{grid-template-columns:.55fr .45fr}.posterProject .visual{min-height:760px}.posterProject .heroimg{inset:0 6% 0 6%;transform:none}
 .missing{min-height:500px;display:grid;place-items:center;background:linear-gradient(135deg,#1d1924,#6f5d8f 60%,#d7cdf8);border-radius:22px;color:white;position:relative;overflow:hidden}.missing:before,.missing:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.25);border-radius:50%}.missing:before{width:320px;height:320px;left:-80px;top:-80px}.missing:after{width:220px;height:220px;right:-40px;bottom:-50px}.missing div{position:relative;z-index:1;text-align:center}.missing strong{font-family:Georgia,serif;font-size:70px;font-weight:400}.missing p{max-width:360px;color:#e6e0ef;line-height:1.5}
+
+.linksbox{
+  background:linear-gradient(135deg,#f2ecff 0%,#ddd2ff 48%,#efe7ff 100%);
+  color:#17141d;
+  border:1px solid rgba(70,55,100,.12);
+  border-radius:34px;
+  padding:38px 42px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:26px;
+  align-items:end;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:18px;
+}
+.linksbox:after{
+  content:"LINKS";
+  position:absolute;
+  right:-8px;
+  top:-26px;
+  font-size:126px;
+  font-weight:900;
+  letter-spacing:-.08em;
+  color:rgba(46,31,67,.055);
+}
+.linksbox h2{
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:clamp(42px,6vw,82px);
+  line-height:.95;
+  margin:0 0 12px;
+}
+.linksbox p{
+  color:#5f566a;
+  line-height:1.65;
+  max-width:680px;
+}
+.linksbox .contactlinks a{
+  border-color:rgba(25,20,32,.20);
+  color:#17141d;
+  background:rgba(255,255,255,.30);
+}
+.linksbox .contactlinks a:hover{
+  background:#17141d;
+  color:white;
+}
+@media(max-width:1000px){
+  .linksbox{grid-template-columns:1fr;align-items:start}
+}
+@media(max-width:650px){
+  .linksbox{padding:28px}
+}
+
 .contact{padding-bottom:60px}.contactbox{background:#151419;color:white;border-radius:34px;padding:44px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;position:relative;overflow:hidden}.contactbox:after{content:"UNIJANA";position:absolute;right:-20px;top:-15px;font-size:140px;font-weight:900;letter-spacing:-.08em;color:rgba(255,255,255,.035)}.contactbox h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(48px,7vw,100px);line-height:.92;margin:0 0 12px}.contactbox p{color:#cfc8d8;line-height:1.65;max-width:700px}.contactlinks{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:2}.contactlinks a{padding:11px 14px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:11px;letter-spacing:.08em}.foot{display:flex;justify-content:space-between;gap:20px;padding:20px 2px 0;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#746e7b}
 .reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.8,.2,1)}.reveal.show{opacity:1;transform:none}
 @media(max-width:1000px){.hero,.aboutgrid,.pbody,.posterProject .pbody,.sectionhead,.contactbox{grid-template-columns:1fr}.heroart{min-height:600px}.visual{min-height:600px}.project .pbody{padding:22px}.contactbox{align-items:start}.links .chip:not(.dark){display:none}}
@@ -268,7 +321,9 @@ h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(7
   </div>
 </section>
 
-<section class="section shell" id="contact"><div class="contactbox reveal"><div><div class="kicker" style="color:#aaa2b5">CONNECTION TERMINAL / 03</div><h2>Let's make<br>something good.</h2><p>Graphic & Visual Designer based in Riyadh, Saudi Arabia. Available for creative projects, presentation systems, editorial design and visual communication.</p></div><div class="contactlinks"><a href="mailto:unijana22@gmail.com">EMAIL ↗</a><a href="tel:+966555143794">PHONE ↗</a><a href="https://github.com/unijana2" target="_blank" rel="noopener">GITHUB ↗</a><a href="https://www.instagram.com/byunijana" target="_blank" rel="noopener">INSTAGRAM ↗</a><a href="#top">BACK TO TOP ↑</a></div></div><div class="foot"><span>UNIJANA® — GRAPHIC & VISUAL DESIGN</span><span>PORTFOLIO / 2026</span></div></section>
+<section class="section shell" id="links"><div class="linksbox reveal"><div><div class="kicker" style="color:#6f5d8f">DIGITAL SHELF / 03</div><h2>Work, code<br>& template stores.</h2><p>Explore selected projects on GitHub or browse editable templates and design products available through my stores.</p></div><div class="contactlinks"><a href="https://github.com/unijana2" target="_blank" rel="noopener">GITHUB ↗</a><a href="https://ko-fi.com/unijana" target="_blank" rel="noopener">KO-FI SHOP ↗</a><a href="https://payhip.com/FORMUNIJANA" target="_blank" rel="noopener">PAYHIP ↗</a></div></div></section>
+
+<section class="section shell" id="contact"><div class="contactbox reveal"><div><div class="kicker" style="color:#aaa2b5">CONNECTION TERMINAL / 04</div><h2>Let's make<br>something good.</h2><p>Graphic & Visual Designer based in Riyadh, Saudi Arabia. Available for creative projects, presentation systems, editorial design and visual communication.</p></div><div class="contactlinks"><a href="mailto:unijana22@gmail.com">EMAIL ↗</a><a href="tel:+966555143794">PHONE ↗</a><a href="https://www.instagram.com/byunijana" target="_blank" rel="noopener">INSTAGRAM ↗</a><a href="#top">BACK TO TOP ↑</a></div></div><div class="foot"><span>UNIJANA® — GRAPHIC & VISUAL DESIGN</span><span>PORTFOLIO / 2026</span></div></section>
 </main>
 <script>
 const els=document.querySelectorAll('.reveal');
