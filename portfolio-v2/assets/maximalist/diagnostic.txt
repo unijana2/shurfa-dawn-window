@@ -1,0 +1,3 @@
+EXACT status=200 bytes=23046 mime=image/png dims=
+HI status=403 bytes=17 mime=text/plain dims=
+NODIMS status=403 bytes=17 mime=text/plain dims=
