@@ -1,4 +1,4 @@
-name: Test Canva asset import
+name: Import Maximalist slide renders
 on:
   push:
     branches: [main]
@@ -6,35 +6,39 @@ on:
 permissions:
   contents: write
 jobs:
-  test:
+  import:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Test Canva URLs and commit diagnostics
+      - name: Download Canva slide renders
         shell: bash
-        env:
-          EXACT: 'https://media.canva.com/v2/image-resize/format:PNG/height:112/quality:100/uri:ifs%3A%2F%2FM%2Fc7d76656-2fcd-4a2e-870f-b720d3390178/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAHikm5Q4tlfWNGgX_e1Si1z6i1SK60xPvFLu3DGlpZGY&exp=1791055615&osig=AAAAAAAAAAAAAAAAAAAAABUKtLX5KAJ8qQSD5tXhiSu4tM1fB4QSteX2HFN2az81&signer=media-rpc&token=AAIAAU0AJGM3ZDc2NjU2LTJmY2QtNGEyZS04NzBmLWI3MjBkMzM5MDE3OAAAAAABoQM71BhfFxjArmBn3IoeVaIx--pwQqDPxKctcCatcWrpY-7nvA&x-canva-quality=thumbnail'
-          HI: 'https://media.canva.com/v2/image-resize/format:PNG/height:1080/quality:100/uri:ifs%3A%2F%2FM%2Fc7d76656-2fcd-4a2e-870f-b720d3390178/watermark:F/width:1920?csig=AAAAAAAAAAAAAAAAAAAAAHikm5Q4tlfWNGgX_e1Si1z6i1SK60xPvFLu3DGlpZGY&exp=1791055615&osig=AAAAAAAAAAAAAAAAAAAAABUKtLX5KAJ8qQSD5tXhiSu4tM1fB4QSteX2HFN2az81&signer=media-rpc&token=AAIAAU0AJGM3ZDc2NjU2LTJmY2QtNGEyZS04NzBmLWI3MjBkMzM5MDE3OAAAAAABoQM71BhfFxjArmBn3IoeVaIx--pwQqDPxKctcCatcWrpY-7nvA&x-canva-quality=print'
-          NODIMS: 'https://media.canva.com/v2/image-resize/format:PNG/quality:100/uri:ifs%3A%2F%2FM%2Fc7d76656-2fcd-4a2e-870f-b720d3390178/watermark:F?csig=AAAAAAAAAAAAAAAAAAAAAHikm5Q4tlfWNGgX_e1Si1z6i1SK60xPvFLu3DGlpZGY&exp=1791055615&osig=AAAAAAAAAAAAAAAAAAAAABUKtLX5KAJ8qQSD5tXhiSu4tM1fB4QSteX2HFN2az81&signer=media-rpc&token=AAIAAU0AJGM3ZDc2NjU2LTJmY2QtNGEyZS04NzBmLWI3MjBkMzM5MDE3OAAAAAABoQM71BhfFxjArmBn3IoeVaIx--pwQqDPxKctcCatcWrpY-7nvA'
         run: |
-          set +e
+          set -euo pipefail
           mkdir -p portfolio-v2/assets/maximalist
-          : > portfolio-v2/assets/maximalist/diagnostic.txt
-          for key in EXACT HI NODIMS; do
-            url="$(printenv "$key")"
-            code=$(curl -L -sS -o "/tmp/$key.bin" -w "%{http_code}" "$url")
-            bytes=$(wc -c < "/tmp/$key.bin" 2>/dev/null || echo 0)
-            mime=$(file -b --mime-type "/tmp/$key.bin" 2>/dev/null || true)
-            dims=$(identify -format "%wx%h" "/tmp/$key.bin" 2>/dev/null || true)
-            echo "$key status=$code bytes=$bytes mime=$mime dims=$dims" >> portfolio-v2/assets/maximalist/diagnostic.txt
-          done
-          if identify /tmp/HI.bin >/dev/null 2>&1; then cp /tmp/HI.bin portfolio-v2/assets/maximalist/test-cover.png;
-          elif identify /tmp/NODIMS.bin >/dev/null 2>&1; then cp /tmp/NODIMS.bin portfolio-v2/assets/maximalist/test-cover.png;
-          elif identify /tmp/EXACT.bin >/dev/null 2>&1; then cp /tmp/EXACT.bin portfolio-v2/assets/maximalist/test-cover.png; fi
-      - name: Commit diagnostics
+          python3 - <<'PY'
+          import json, urllib.request, pathlib, struct
+          items = json.loads(r'''[["01","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0001.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T121813Z&X-Amz-Expires=15023&X-Amz-Signature=6707bc93257afae5f09789193689f365f7c7fd2c14ff79c5d893f206d6a125d6&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["02","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0002.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T102812Z&X-Amz-Expires=21624&X-Amz-Signature=652fe8a7a6ea78d808d8ac7a8d1b77bb989731f8f33c6191491bccb34bd3975c&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["03","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0003.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T105532Z&X-Amz-Expires=19984&X-Amz-Signature=13800a2eb425b8765beaeac461cf9f62fa22f05d5615c8bb23be3d6488c7f1f9&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["04","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0004.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T120649Z&X-Amz-Expires=15707&X-Amz-Signature=f7e4a5c7ca79744986404b0a87a050245719047e29c0f0064a59626cb66a05c9&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["05","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0005.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261002%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261002T154435Z&X-Amz-Expires=89041&X-Amz-Signature=d34c486256b0aab5bba67fc838e449c349b41fc41b3d939010353cd0cdb823cb&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["06","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0006.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261002%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261002T165308Z&X-Amz-Expires=84928&X-Amz-Signature=f94dcdc3598233a7dde7e189a93c18f6e3a321e420e24d57738db163bd3d8785&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["07","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0007.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T060118Z&X-Amz-Expires=37638&X-Amz-Signature=4cdc09132ac6d379a8215ec9035338079fa9c1a98ab5abfca85fcbd9524bc79d&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["08","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0008.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T053019Z&X-Amz-Expires=39497&X-Amz-Signature=86ff789411efd2bbbeadec5ffafc95edb81eb1b444389e767db8b0a64b75ff66&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["09","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0009.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T140529Z&X-Amz-Expires=8587&X-Amz-Signature=72df5b18639843c8f4fae4819653f05cfaebefb8860a11227dd490a2742a76b1&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["10","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0010.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261002%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261002T184557Z&X-Amz-Expires=78159&X-Amz-Signature=b567e71a24b64623b65d162a2a78c84081154724c06df96b770a761a240e97b3&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["11","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0011.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261002%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261002T210440Z&X-Amz-Expires=69836&X-Amz-Signature=ffedbd0727b31c988df5a828c3428f765aae405f59c5b7e00728996e7a2c13da&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["12","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0012.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T021801Z&X-Amz-Expires=51035&X-Amz-Signature=fdd3f08bd39e8130ca87169a56e89848120c28780f43c69bb071b9a452e6de89&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["13","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0013.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T061010Z&X-Amz-Expires=37106&X-Amz-Signature=ce5dc8d06426b8d2c90a114a90897ce68fee686e238dfb7f87f8384d553ee7ac&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["14","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0014.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T140853Z&X-Amz-Expires=8383&X-Amz-Signature=38c04da5bede6336882bf5c2ed353d1c7f3285f2c7386bdf82c891122fb72a94&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"],["15","https://s3.amazonaws.com/document-export.canva.com/RW07I/DAHWleRW07I/2/thumbnail/0015.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUHTDF2ZFFQ%2F20261003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261003T115323Z&X-Amz-Expires=16513&X-Amz-Signature=9db1920c1ebd3adc8360ee3c298e29ed14a710a6a063f75617ef23d99ab37549&X-Amz-SignedHeaders=host&response-expires=Sat%2C%2003%20Oct%202026%2016%3A28%3A36%20GMT"]]''')
+          out = pathlib.Path("portfolio-v2/assets/maximalist")
+          diag=[]
+          for num,url in items:
+              req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+              try:
+                  with urllib.request.urlopen(req,timeout=60) as r:
+                      data=r.read()
+                  dims=""
+                  if data[:8]==b"\x89PNG\r\n\x1a\n" and len(data)>=24:
+                      w,h=struct.unpack(">II",data[16:24]); dims=f"{w}x{h}"
+                  path=out/f"{num}.png"
+                  path.write_bytes(data)
+                  diag.append(f"{num} status=200 bytes={len(data)} dims={dims}")
+              except Exception as e:
+                  diag.append(f"{num} ERROR {e}")
+          (out/"diagnostic.txt").write_text("\n".join(diag)+"\n")
+          PY
+      - name: Commit slide renders
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add portfolio-v2/assets/maximalist
-          git diff --cached --quiet || git commit -m "Test Canva asset URL import"
+          git diff --cached --quiet || git commit -m "Add Maximalist Editorial Pitch slide renders"
           git push
