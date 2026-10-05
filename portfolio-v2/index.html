@@ -328,6 +328,102 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 @media(max-width:560px){.focus-strip{grid-template-columns:1fr;gap:12px;padding-top:18px}.project:nth-of-type(-n+3):before{right:12px;top:12px}.template-card{border-radius:10px!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.project,.btn,.chip,.contactlinks a{transition:none!important}.project:hover{transform:none}}
 </style>
+
+<style id="unijana-portfolio-polish-v1">
+/* UNIJANA portfolio visual polish v1 */
+:root{
+  --portfolio-bg:#f7f3ec;
+  --portfolio-card:rgba(255,255,255,.76);
+  --portfolio-ink:#17141b;
+  --portfolio-soft:#746d79;
+  --portfolio-line:rgba(23,20,27,.11);
+  --portfolio-lav:#b5a5ef;
+}
+body{
+  background:
+    radial-gradient(circle at 12% 8%,rgba(181,165,239,.22),transparent 28rem),
+    radial-gradient(circle at 88% 32%,rgba(223,255,91,.10),transparent 25rem),
+    linear-gradient(180deg,#f8f4ff 0%,#faf7f1 32%,#f6f1ff 72%,#f7f3ec 100%);
+}
+.shell{width:min(1560px,calc(100% - 48px))}
+.navin{border-radius:999px;padding:9px 14px;background:rgba(250,248,255,.8)}
+.hero{min-height:88vh;grid-template-columns:.88fr 1.12fr;gap:64px;padding-top:56px}
+h1{font-size:clamp(72px,9.2vw,150px)}
+.lead{max-width:670px}
+.heroart{min-height:650px}
+
+.section{padding:90px 0}
+.sectionhead{margin-bottom:38px}
+.workgrid{gap:44px}
+.project{
+  border-radius:28px;
+  border:1px solid var(--portfolio-line);
+  background:var(--portfolio-card);
+  box-shadow:0 20px 60px rgba(39,29,54,.07);
+  backdrop-filter:blur(8px);
+}
+.project:nth-child(even){background:rgba(249,246,255,.82)}
+.pmeta{padding:13px 22px;border-bottom-color:var(--portfolio-line)}
+.project .pbody{
+  grid-template-columns:minmax(300px,.36fr) minmax(0,.64fr)!important;
+  gap:40px!important;
+  padding:34px!important;
+  align-items:center!important;
+}
+.ptitle{font-size:clamp(46px,4.7vw,76px)}
+.pdesc{max-width:520px;font-size:15px}
+.visual{
+  width:100%!important;
+  max-width:900px!important;
+  margin:0 auto!important;
+}
+.visual .art.heroimg{max-width:900px!important}
+.visual .art.small1,.visual .art.small2{max-width:440px!important}
+.visual .art img{
+  image-rendering:auto!important;
+  border-radius:8px!important;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+.posterProject .visual{max-width:640px!important}
+.posterProject .visual .art.heroimg{max-width:640px!important}
+
+.template-deck{width:min(100%,820px)!important}
+.maximalist-visual{max-width:900px!important;transform:none!important}
+.maximalist-visual .max-deck{width:min(100%,900px)!important}
+.yearStackWrap{width:min(100%,720px)!important}
+.yearStackCard img{border-radius:14px;box-shadow:0 18px 42px rgba(35,25,52,.12)}
+
+.linksbox,.contactbox{border-radius:28px}
+.panel{border-radius:24px}
+
+@media(max-width:1100px){
+  .project .pbody{grid-template-columns:1fr!important;gap:26px!important}
+  .visual{max-width:860px!important}
+  .pdesc{max-width:760px}
+}
+@media(max-width:760px){
+  .shell{width:min(100% - 22px,1560px)}
+  .nav{top:6px;padding-top:6px}
+  .navin{border-radius:18px}
+  .hero{min-height:auto;padding:56px 0 30px;gap:28px}
+  .heroart{min-height:430px}
+  .section{padding:68px 0}
+  .project{border-radius:22px}
+  .project .pbody{padding:20px!important}
+  .pmeta{padding:12px 16px}
+  .visual{grid-template-columns:1fr!important;gap:10px!important}
+  .visual .art.heroimg,.visual .art.small1,.visual .art.small2{max-width:100%!important}
+  .template-deck,.maximalist-visual .max-deck{width:100%!important}
+}
+@media(min-width:1600px){
+  .shell{width:min(1640px,calc(100% - 72px))}
+  .project .pbody{grid-template-columns:minmax(330px,.34fr) minmax(0,.66fr)!important}
+  .visual{max-width:980px!important}
+  .visual .art.heroimg{max-width:980px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="noise"></div><div class="gridbg"></div>
