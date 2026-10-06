@@ -64,7 +64,7 @@ textarea,input{width:100%;border:1px solid #dfe5f1;background:#fbfcff;border-rad
     <div id="card" class="card">
       <img id="bg" alt="بطاقة شكر للمعلم">
       <div class="overlay">
-        <div id="msgOut" class="msg-out">اكتب رسالتك هنا…</div>
+        <div id="msgOut" class="msg-out">اكتب كلماتك هنا…</div>
         <div id="studentOut" class="name-out student-out">اسم الطالب/ـة</div>
         <div id="teacherOut" class="name-out teacher-out">اسم المعلّم/ـة</div>
       </div>
@@ -84,7 +84,7 @@ textarea,input{width:100%;border:1px solid #dfe5f1;background:#fbfcff;border-rad
 <div class="label-row"><label>اختر طريقة الرسالة</label></div>
 <div class="mode-switch">
 <button id="presetMode" class="mode-btn active" type="button">رسالة جاهزة</button>
-<button id="customMode" class="mode-btn" type="button">اكتب رسالتك</button>
+<button id="customMode" class="mode-btn" type="button">كلمات منك</button>
 </div>
 
 <div id="presetSection">
@@ -97,7 +97,7 @@ textarea,input{width:100%;border:1px solid #dfe5f1;background:#fbfcff;border-rad
 
 <div id="customSection" class="hidden">
 <div class="label-row" style="margin-top:10px"><label for="message">اكتب رسالتك للمعلم/ـة</label><span id="counter" class="counter">0 / 220</span></div>
-<textarea id="message" maxlength="220" placeholder="اكتب رسالتك هنا…"></textarea>
+<textarea id="message" maxlength="220" placeholder="اكتب كلماتك هنا…"></textarea>
 <div class="hint">الحد الأقصى 220 حرفًا حتى تبقى البطاقة مرتبة وواضحة.</div>
 </div>
 </div>
@@ -127,7 +127,7 @@ const PRESETS=[
 ];
 let mode="preset",presetIndex=0;
 function currentMessage(){return mode==="preset"?PRESETS[presetIndex]:message.value.trim();}
-function render(){const v=currentMessage();msgOut.textContent=v||"اكتب رسالتك هنا…";studentOut.textContent=student.value.trim()||"اسم الطالب/ـة";teacherOut.textContent=teacher.value.trim()||"اسم المعلّم/ـة";counter.textContent=message.value.length+" / 220";counter.className="counter"+(message.value.length>=220?" max":message.value.length>=190?" near":"")}
+function render(){const v=currentMessage();msgOut.textContent=v||"اكتب كلماتك هنا…";studentOut.textContent=student.value.trim()||"اسم الطالب/ـة";teacherOut.textContent=teacher.value.trim()||"اسم المعلّم/ـة";counter.textContent=message.value.length+" / 220";counter.className="counter"+(message.value.length>=220?" max":message.value.length>=190?" near":"")}
 [message,student,teacher].forEach(x=>x.addEventListener("input",render));
 presetMode.onclick=()=>{mode="preset";presetMode.classList.add("active");customMode.classList.remove("active");presetSection.classList.remove("hidden");customSection.classList.add("hidden");render()};
 customMode.onclick=()=>{mode="custom";customMode.classList.add("active");presetMode.classList.remove("active");customSection.classList.remove("hidden");presetSection.classList.add("hidden");message.focus();render()};
