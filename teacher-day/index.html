@@ -73,9 +73,9 @@ textarea,input{width:100%;border:1px solid #dfe5f1;background:#fbfcff;border-rad
 </div>
 </div>
 
-<div class="actions"><button id="save" class="save" type="button">حفظ البطاقة على جهازي</button><button id="reset" class="reset" type="button">مسح</button></div>
+<div class="actions"><button id="save" class="save" type="button">حفظ البطاقة في الدرايف</button><button id="reset" class="reset" type="button">مسح</button></div>
 <div id="status" class="status"></div>
-<div class="mini">عند الحفظ تُنشأ صورة PNG على جهاز الطالب مباشرة. لا يتم رفع الرسالة أو الاسم إلى أي خادم.</div>
+<div class="mini">عند الحفظ تُنشأ البطاقة كصورة PNG وتُرسل مباشرة إلى مجلد الفعالية في Google Drive.</div>
 </aside>
 </section>
 </main>
@@ -90,7 +90,63 @@ document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{message.value=b.dat
 document.getElementById("reset").onclick=()=>{message.value="";student.value="";teacher.value="";status.textContent="";render()};
 function wrapArabic(ctx,text,maxWidth){const paras=text.split(/\n/),lines=[];for(const p of paras){const words=p.split(/\s+/).filter(Boolean);let line="";for(const w of words){const test=line?line+" "+w:w;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=w}else line=test}if(line)lines.push(line)}return lines}
 function fitMessage(ctx,text,maxWidth,maxHeight){let size=34;for(;size>=23;size--){ctx.font="500 "+size+"px Tajawal, Arial";const lines=wrapArabic(ctx,text,maxWidth);const lh=size*1.75;if(lines.length*lh<=maxHeight)return {size,lines,lh}}ctx.font="500 23px Tajawal, Arial";return {size:23,lines:wrapArabic(ctx,text,maxWidth),lh:40}}
-document.getElementById("save").onclick=async()=>{if(!message.value.trim()||!student.value.trim()||!teacher.value.trim()){status.textContent="اكتب الرسالة واسمك واسم المعلّم/ـة أولًا.";status.className="status bad";return}try{status.textContent="جارٍ تجهيز البطاقة…";status.className="status";if(document.fonts&&document.fonts.ready)await document.fonts.ready;await bg.decode().catch(()=>{});const c=document.createElement("canvas");c.width=1080;c.height=1440;const x=c.getContext("2d");x.drawImage(bg,0,0,1080,1440);x.direction="rtl";x.textAlign="center";x.textBaseline="middle";x.fillStyle="#172f78";const fit=fitMessage(x,message.value,760,365);x.font="500 "+fit.size+"px Tajawal, Arial";let y=735-(fit.lines.length-1)*fit.lh/2;for(const line of fit.lines){x.fillText(line,540,y);y+=fit.lh}x.font="600 24px Tajawal, Arial";x.fillText(student.value.trim(),834,1265);x.fillText(teacher.value.trim(),273,1265);const a=document.createElement("a");a.href=c.toDataURL("image/png",1);a.download="رسالة-شكر-"+teacher.value.trim().replace(/[\\/:*?"<>|]/g,"-")+".png";a.click();status.textContent="تم حفظ البطاقة على جهازك ✓";status.className="status ok"}catch(e){console.error(e);status.textContent="تعذّر إنشاء الصورة. جرّب مرة أخرى.";status.className="status bad"}};
+document.getElementById("save").onclick=async()=>{
+  if(!message.value.trim()||!student.value.trim()||!teacher.value.trim()){
+    status.textContent="اكتب الرسالة واسمك واسم المعلّم/ـة أولًا.";
+    status.className="status bad";
+    return;
+  }
+  const btn=document.getElementById("save");
+  try{
+    btn.disabled=true;
+    btn.textContent="جارٍ الحفظ في الدرايف…";
+    status.textContent="جارٍ تجهيز البطاقة…";
+    status.className="status";
+    if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+    await bg.decode().catch(()=>{});
+    const c=document.createElement("canvas");
+    c.width=1080;c.height=1440;
+    const x=c.getContext("2d");
+    x.drawImage(bg,0,0,1080,1440);
+    x.direction="rtl";
+    x.textAlign="center";
+    x.textBaseline="middle";
+    x.fillStyle="#172f78";
+    const fit=fitMessage(x,message.value,760,365);
+    x.font="500 "+fit.size+"px Tajawal, Arial";
+    let y=735-(fit.lines.length-1)*fit.lh/2;
+    for(const line of fit.lines){x.fillText(line,540,y);y+=fit.lh}
+    x.font="600 24px Tajawal, Arial";
+    x.fillText(student.value.trim(),834,1265);
+    x.fillText(teacher.value.trim(),273,1265);
+
+    const image=c.toDataURL("image/png",1);
+    const payload={
+      image:image,
+      student:student.value.trim(),
+      teacher:teacher.value.trim(),
+      message:message.value.trim()
+    };
+
+    await fetch("https://script.google.com/macros/s/AKfycbyq8yM1hhfPHGafE_pq1Q1NkztUYbC91ob7EyXxoS6ntGVWAW_1q17eoJjOiNxiGOJb8Q/exec",{
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(payload)
+    });
+
+    status.textContent="تم حفظ البطاقة في الدرايف ✓";
+    status.className="status ok";
+    btn.textContent="تم الحفظ ✓";
+    setTimeout(()=>{btn.disabled=false;btn.textContent="حفظ البطاقة في الدرايف"},1800);
+  }catch(e){
+    console.error(e);
+    status.textContent="تعذّر الحفظ في الدرايف. جرّب مرة أخرى.";
+    status.className="status bad";
+    btn.disabled=false;
+    btn.textContent="حفظ البطاقة في الدرايف";
+  }
+}
 render();
 </script>
 </body>
