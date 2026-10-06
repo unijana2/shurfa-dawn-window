@@ -111,9 +111,9 @@ textarea,input{width:100%;border:1px solid #dfe5f1;background:#fbfcff;border-rad
 </div>
 </div>
 
-<div class="actions"><button id="save" class="save" type="button">حفظ البطاقة في الدرايف</button><button id="reset" class="reset" type="button">مسح</button></div>
+<div class="actions"><button id="save" class="save" type="button">تحميل البطاقة</button><button id="reset" class="reset" type="button">مسح</button></div>
 <div id="status" class="status"></div>
-<div class="mini">عند الحفظ تُنشأ البطاقة كصورة PNG وتُرسل مباشرة إلى مجلد الفعالية في Google Drive.</div>
+<div class="mini">عند الضغط على التحميل تُنشأ البطاقة كصورة PNG وتُنزل مباشرة على جهازك.</div>
 
 
 <script>
@@ -144,7 +144,7 @@ document.getElementById("save").onclick=async()=>{
   const btn=document.getElementById("save");
   try{
     btn.disabled=true;
-    btn.textContent="جارٍ الحفظ في الدرايف…";
+    btn.textContent="جارٍ تجهيز البطاقة…";
     status.textContent="جارٍ تجهيز البطاقة…";
     status.className="status";
     if(document.fonts&&document.fonts.ready)await document.fonts.ready;
@@ -173,23 +173,24 @@ document.getElementById("save").onclick=async()=>{
       message:currentMessage()
     };
 
-    await fetch("https://script.google.com/macros/s/AKfycbyq8yM1hhfPHGafE_pq1Q1NkztUYbC91ob7EyXxoS6ntGVWAW_1q17eoJjOiNxiGOJb8Q/exec",{
-      method:"POST",
-      mode:"no-cors",
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body:JSON.stringify(payload)
-    });
+    const a=document.createElement("a");
+    a.href=image;
+    const safeTeacher=(teacher.value.trim()||"Teacher").replace(/[\\/:*?"<>|#%{}~]/g,"").replace(/\s+/g,"_").slice(0,60);
+    a.download="Teacher_Card_"+safeTeacher+".png";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
 
-    status.textContent="تم حفظ البطاقة في الدرايف ✓";
+    status.textContent="تم تحميل البطاقة ✓";
     status.className="status ok";
-    btn.textContent="تم الحفظ ✓";
-    setTimeout(()=>{btn.disabled=false;btn.textContent="حفظ البطاقة في الدرايف"},1800);
+    btn.textContent="تم التحميل ✓";
+    setTimeout(()=>{btn.disabled=false;btn.textContent="تحميل البطاقة"},1800);
   }catch(e){
     console.error(e);
-    status.textContent="تعذّر الحفظ في الدرايف. جرّب مرة أخرى.";
+    status.textContent="تعذّر تحميل البطاقة. جرّب مرة أخرى.";
     status.className="status bad";
     btn.disabled=false;
-    btn.textContent="حفظ البطاقة في الدرايف";
+    btn.textContent="تحميل البطاقة";
   }
 }
 render();
