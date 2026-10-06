@@ -111,9 +111,9 @@ textarea,input{width:100%;border:1px solid #dfe5f1;background:#fbfcff;border-rad
 </div>
 </div>
 
-<div class="actions"><button id="save" class="save" type="button">مشاركة البطاقة</button><button id="reset" class="reset" type="button">مسح</button></div>
+<div class="actions"><button id="save" class="save" type="button">حفظ البطاقة</button><button id="reset" class="reset" type="button">مسح</button></div>
 <div id="status" class="status"></div>
-<div class="mini">اضغط «مشاركة البطاقة» لإرسالها عبر واتساب أو البريد أو AirDrop أو حفظها في الملفات. وإذا جهازك ما يدعم المشاركة، بتنزل الصورة تلقائيًا.</div>
+<div class="mini">اضغط «حفظ البطاقة» لتنزيلها كصورة SVG. وإذا منع المتصفح التنزيل، بتفتح البطاقة في صفحة جديدة وتحفظها من هناك.</div>
 
 
 <script>
@@ -135,7 +135,7 @@ document.querySelectorAll(".preset-card").forEach((b,i)=>b.onclick=()=>{presetIn
 document.getElementById("reset").onclick=()=>{message.value="";student.value="";teacher.value="";mode="preset";presetIndex=0;presetMode.classList.add("active");customMode.classList.remove("active");presetSection.classList.remove("hidden");customSection.classList.add("hidden");document.querySelectorAll(".preset-card").forEach((x,i)=>x.classList.toggle("active",i===0));status.textContent="";render()};
 function wrapArabic(ctx,text,maxWidth){const paras=text.split(/\n/),lines=[];for(const p of paras){const words=p.split(/\s+/).filter(Boolean);let line="";for(const w of words){const test=line?line+" "+w:w;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=w}else line=test}if(line)lines.push(line)}return lines}
 function fitMessage(ctx,text,maxWidth,maxHeight){let size=34;for(;size>=23;size--){ctx.font="500 "+size+"px Tajawal, Arial";const lines=wrapArabic(ctx,text,maxWidth);const lh=size*1.75;if(lines.length*lh<=maxHeight)return {size,lines,lh}}ctx.font="500 23px Tajawal, Arial";return {size:23,lines:wrapArabic(ctx,text,maxWidth),lh:40}}
-document.getElementById("save").onclick=async()=>{
+document.getElementById("save").onclick=()=>{
   if(!currentMessage()||!student.value.trim()||!teacher.value.trim()){
     status.textContent="اكتب الرسالة واسمك واسم المعلّم/ـة أولًا.";
     status.className="status bad";
@@ -149,94 +149,76 @@ document.getElementById("save").onclick=async()=>{
     status.textContent="جارٍ تجهيز البطاقة…";
     status.className="status";
 
-    if(document.fonts&&document.fonts.ready) await document.fonts.ready;
+    const esc=s=>String(s)
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&apos;");
 
-    if(!bg.complete || !bg.naturalWidth){
-      await new Promise((resolve,reject)=>{
-        const done=()=>{cleanup();resolve()};
-        const fail=()=>{cleanup();reject(new Error("background_load_failed"))};
-        const cleanup=()=>{bg.removeEventListener("load",done);bg.removeEventListener("error",fail)};
-        bg.addEventListener("load",done);
-        bg.addEventListener("error",fail);
-        bg.src=BG;
-      });
+    const msg=currentMessage().trim();
+    const words=msg.split(/\s+/);
+    const lines=[];
+    let line="";
+    const maxChars=42;
+    for(const w of words){
+      const test=line?line+" "+w:w;
+      if(test.length>maxChars && line){
+        lines.push(line);
+        line=w;
+      }else{
+        line=test;
+      }
     }
+    if(line) lines.push(line);
 
-    const canvas=document.createElement("canvas");
-    canvas.width=1080;
-    canvas.height=1440;
-    const x=canvas.getContext("2d");
-    if(!x) throw new Error("canvas_not_supported");
+    const msgY=705-(lines.length-1)*30;
+    const tspans=lines.map((ln,i)=>'<tspan x="540" dy="'+(i===0?0:58)+'">'+esc(ln)+'</tspan>').join("");
 
-    x.drawImage(bg,0,0,1080,1440);
-    x.direction="rtl";
-    x.textAlign="center";
-    x.textBaseline="middle";
-    x.fillStyle="#172f78";
+    const svg='<?xml version="1.0" encoding="UTF-8"?>'+
+      '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1440" viewBox="0 0 1080 1440">'+
+      '<image href="'+BG+'" x="0" y="0" width="1080" height="1440" preserveAspectRatio="xMidYMid slice"/>'+
+      '<style>text{font-family:Tajawal,Arial,sans-serif;fill:#172f78}</style>'+
+      '<text x="540" y="'+msgY+'" text-anchor="middle" direction="rtl" unicode-bidi="plaintext" font-size="34" font-weight="500">'+tspans+'</text>'+
+      '<text x="834" y="1272" text-anchor="middle" direction="rtl" font-size="24" font-weight="600">'+esc(student.value.trim())+'</text>'+
+      '<text x="273" y="1272" text-anchor="middle" direction="rtl" font-size="24" font-weight="600">'+esc(teacher.value.trim())+'</text>'+
+      '</svg>';
 
-    const fit=fitMessage(x,currentMessage(),760,365);
-    x.font="500 "+fit.size+"px Tajawal, Arial";
-    let y=735-(fit.lines.length-1)*fit.lh/2;
-    for(const line of fit.lines){x.fillText(line,540,y);y+=fit.lh}
-
-    x.font="600 24px Tajawal, Arial";
-    x.fillText(student.value.trim(),834,1265);
-    x.fillText(teacher.value.trim(),273,1265);
-
-    const blob=await new Promise((resolve,reject)=>{
-      canvas.toBlob(b=>b?resolve(b):reject(new Error("png_failed")),"image/png",1);
-    });
-
+    const blob=new Blob([svg],{type:"image/svg+xml;charset=utf-8"});
+    const url=URL.createObjectURL(blob);
     const safeTeacher=(teacher.value.trim()||"Teacher")
       .replace(/[\\/:*?"<>|#%{}~]/g,"")
       .replace(/\s+/g,"_")
       .slice(0,60);
-    const file=new File([blob],"Teacher_Card_"+safeTeacher+".png",{type:"image/png"});
 
-    let shared=false;
-    if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+    const a=document.createElement("a");
+    a.href=url;
+    a.download="Teacher_Card_"+safeTeacher+".svg";
+    a.style.display="none";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(()=>{
       try{
-        await navigator.share({
-          files:[file],
-          title:"رسالة شكر بمناسبة يوم المعلم",
-          text:"بطاقة شكر وتقدير من "+student.value.trim()
-        });
-        shared=true;
-        status.textContent="تم فتح المشاركة ✓";
-      }catch(err){
-        if(err && err.name==="AbortError"){
-          status.textContent="تم إلغاء المشاركة.";
-          status.className="status";
-          btn.disabled=false;
-          btn.textContent="مشاركة البطاقة";
-          return;
-        }
-      }
-    }
+        window.open(url,"_blank","noopener");
+      }catch(_){}
+    },450);
 
-    if(!shared){
-      const url=URL.createObjectURL(blob);
-      const a=document.createElement("a");
-      a.href=url;
-      a.download=file.name;
-      a.target="_blank";
-      a.rel="noopener";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),15000);
-      status.textContent="تم تجهيز البطاقة وتنزيلها ✓";
-    }
-
+    status.textContent="تم تجهيز البطاقة ✓ إذا ما نزلت، افتح الصفحة الجديدة واحفظها.";
     status.className="status ok";
-    btn.textContent=shared?"تمت المشاركة ✓":"تم التنزيل ✓";
-    setTimeout(()=>{btn.disabled=false;btn.textContent="مشاركة البطاقة"},2000);
+    btn.textContent="تم التجهيز ✓";
+    setTimeout(()=>{
+      btn.disabled=false;
+      btn.textContent="حفظ البطاقة";
+      setTimeout(()=>URL.revokeObjectURL(url),30000);
+    },1800);
   }catch(e){
-    console.error("CARD_SHARE_ERROR",e);
+    console.error("CARD_SVG_ERROR",e);
     status.textContent="تعذّر تجهيز البطاقة. حدّث الصفحة وجرّب مرة أخرى.";
     status.className="status bad";
     btn.disabled=false;
-    btn.textContent="مشاركة البطاقة";
+    btn.textContent="حفظ البطاقة";
   }
 }
 render();
