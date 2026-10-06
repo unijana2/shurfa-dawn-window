@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#F2EBDD"/>
+<title>إلى صُنّاع الأثر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+:root{--ink:#243328;--paper:#f3ede1;--cream:#fffaf2;--gold:#b18b50;--green:#2f4938;--sage:#8f9b7d;--terra:#a55f47;--blue:#6f8aa0;--line:rgba(36,51,40,.13);--shadow:0 28px 80px rgba(45,40,31,.13)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:"IBM Plex Sans Arabic",sans-serif;background:#ece4d7;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 9% 5%,rgba(255,255,255,.95),transparent 26%),radial-gradient(circle at 86% 20%,rgba(143,155,125,.18),transparent 22%),radial-gradient(circle at 50% 100%,rgba(165,95,71,.13),transparent 24%)}
+.noise{position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}
+.wrap{width:min(1240px,calc(100% - 28px));margin:auto;padding:34px 0 64px;position:relative}
+.hero{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;margin-bottom:24px}
+.hero .eyebrow{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:#756e62;margin-bottom:8px}
+.hero h1{font-family:"Noto Kufi Arabic";font-size:clamp(2.1rem,6vw,5.5rem);line-height:1.1;margin:0;letter-spacing:-.055em}
+.hero p{max-width:650px;color:#777065;line-height:1.9;margin:12px 0 0}
+.pill{border:1px solid var(--line);background:rgba(255,255,255,.44);backdrop-filter:blur(14px);padding:10px 15px;border-radius:999px;font-size:.82rem;white-space:nowrap}
+.workspace{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(330px,.72fr);gap:22px;align-items:start}
+.stage,.controls{border:1px solid rgba(255,255,255,.65);background:rgba(255,255,255,.42);backdrop-filter:blur(18px);box-shadow:var(--shadow);border-radius:34px}
+.stage{padding:18px;position:sticky;top:18px}
+.stagebar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;padding:0 4px}.stagebar small{color:#777065}
+#capture{width:min(100%,760px);margin:auto}
+.card{aspect-ratio:4/5;position:relative;overflow:hidden;border-radius:28px;min-height:610px;isolation:isolate;box-shadow:0 22px 60px rgba(36,51,40,.16);transition:.35s ease}
+.card-content{position:absolute;inset:0;z-index:6;display:flex;flex-direction:column;padding:9% 9%}
+.kicker{font-size:.72rem;letter-spacing:.23em;text-transform:uppercase;opacity:.7;margin-bottom:auto}
+.card h2{font-family:"Noto Kufi Arabic";font-size:clamp(1.75rem,4.2vw,3.45rem);line-height:1.48;letter-spacing:-.04em;margin:0 0 18px;font-weight:600}
+.rule{width:74px;height:1px;background:currentColor;opacity:.38;margin:0 0 22px}
+.msg{font-size:clamp(.98rem,2vw,1.28rem);line-height:2.05;margin:0;max-width:91%}
+.meta{margin-top:auto;display:grid;gap:6px;font-size:.88rem}.meta span{opacity:.58}.email{direction:ltr;unicode-bidi:plaintext;font-size:.75rem;opacity:.58}
+.d1{background:linear-gradient(90deg,var(--green) 0 12%,transparent 12%),linear-gradient(145deg,#f6f0e4,#eee3d0);color:#27402f}
+.d1:before{content:"";position:absolute;inset:5% 5% 5% 18%;border-radius:50% 3% 3% 3%;background:rgba(255,255,255,.42);border:1px solid rgba(177,139,80,.68);z-index:1}
+.d1:after{content:"";position:absolute;width:55%;height:55%;left:-22%;bottom:-18%;border-radius:50%;background:#87977f;opacity:.78}
+.d1 .card-content{padding-right:22%}.d1 .orb{position:absolute;z-index:3;width:46px;height:46px;border-radius:50%;left:11%;top:9%;background:radial-gradient(circle,#c6ab77 0 48%,#2f4938 50% 100%);box-shadow:0 8px 22px #0002}
+.d2{background:#f8f4ec;color:#1f352b}
+.d2:before{content:"";position:absolute;width:58%;height:54%;right:-18%;bottom:-18%;border-radius:50%;background:#dfe6dc}
+.d2:after{content:"";position:absolute;width:42%;height:42%;left:-10%;top:-15%;border-radius:50%;background:#d8c5ae}
+.d2 .geo1{position:absolute;z-index:2;left:6%;top:6%;width:27%;height:32%;background:var(--blue);border-radius:0 0 100% 0}
+.d2 .geo2{position:absolute;z-index:2;right:7%;bottom:8%;width:28%;height:15%;background:var(--terra);border-radius:999px}
+.d2 .ring{position:absolute;z-index:3;left:15%;bottom:15%;width:110px;height:110px;border:1px solid var(--gold);border-radius:50%}
+.d3{background:linear-gradient(138deg,#22352a 0 18%,#e8dfd0 18% 77%,#a35d46 77% 100%);color:#25362b}
+.d3:before{content:"";position:absolute;inset:6.5% 7%;background:#f8f0e4;clip-path:polygon(4% 0,96% 2%,100% 21%,97% 100%,5% 97%,0 75%,2% 18%);z-index:1;box-shadow:0 20px 50px #0002}
+.d3:after{content:"";position:absolute;inset:0;z-index:2;opacity:.18;background-image:radial-gradient(#413a32 .8px,transparent .8px);background-size:8px 8px}
+.d3 .stamp{position:absolute;z-index:4;top:8%;right:10%;width:58px;height:58px;border-radius:50%;background:#b88c4f;box-shadow:inset 0 0 0 8px #dec491}
+.d3 .tape{position:absolute;z-index:3;top:3%;left:8%;width:34%;height:12%;background:#24372b;transform:rotate(3deg);clip-path:polygon(2% 7%,100% 0,96% 90%,0 100%)}
+.controls{padding:22px}.block{padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid var(--line)}.block:last-of-type{border:0;margin-bottom:10px;padding-bottom:0}
+.block h3{font-size:.96rem;margin:0 0 12px}.designs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.design-btn{border:1px solid var(--line);background:#fff9;border-radius:18px;padding:0;overflow:hidden;cursor:pointer;text-align:right;transition:.2s}.design-btn:hover{transform:translateY(-2px)}.design-btn.active{outline:2px solid var(--green);outline-offset:2px}.design-btn span{display:block;padding:8px 9px;font-size:.72rem}
+.thumb{height:67px}.t1{background:linear-gradient(90deg,#2f4938 0 22%,#efe7d7 22%)}.t2{background:linear-gradient(135deg,#6f8aa0 0 27%,#f7f3ea 27% 72%,#a55f47 72%)}.t3{background:linear-gradient(135deg,#24372b 0 24%,#e8dfd0 24% 72%,#a55f47 72%)}
+.msgs{display:grid;gap:8px}.msgpick{display:flex;gap:9px;align-items:flex-start;padding:10px;border:1px solid var(--line);border-radius:16px;background:#fff8;cursor:pointer}.msgpick input{margin-top:5px;accent-color:var(--green)}.msgpick b{font-size:.85rem;display:block}.msgpick small{color:#777065;line-height:1.55}
+.field{display:grid;gap:6px;margin-bottom:11px}.field label{font-size:.81rem;font-weight:600}.field input{width:100%;border:1px solid var(--line);background:#fff9;border-radius:14px;padding:12px 13px;outline:0}.field input:focus{border-color:#69806f;box-shadow:0 0 0 3px #69806f22}
+.actions{display:flex;gap:9px}.primary{flex:1;border:0;background:var(--green);color:white;border-radius:15px;padding:13px 16px;font-weight:650;cursor:pointer;box-shadow:0 10px 24px #2f493833}.ghost{border:1px solid var(--line);background:#fff8;border-radius:15px;padding:12px 14px;cursor:pointer}.status{min-height:20px;margin-top:10px;color:#6e695f;font-size:.8rem}.ok{color:#34724a}.bad{color:#a33f35}
+.note{font-size:.72rem;color:#81796c;line-height:1.7;margin-top:12px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.stage{position:relative;top:0}.controls{order:-1}.card{min-height:0}}
+@media(max-width:540px){.wrap{width:calc(100% - 14px);padding-top:18px}.stage,.controls{border-radius:24px}.stage{padding:10px}.controls{padding:15px}.designs{grid-template-columns:1fr}.thumb{height:42px}.card h2{font-size:1.45rem}.msg{font-size:.86rem;line-height:1.85}.meta{font-size:.75rem}.d1 .card-content{padding-right:19%}}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<main class="wrap">
+<section class="hero">
+<div><div class="eyebrow">TEACHER APPRECIATION • 2026</div><h1>إلى صُنّاع الأثر</h1><p>اصنع بطاقتك في ثوانٍ: اختر أسلوبًا بصريًا ورسالة، اكتب بيانات المعلّم، ثم احفظ البطاقة جاهزة للإرسال.</p></div>
+<div class="pill">٣ تصاميم • ٣ رسائل • بطاقة واحدة لك</div>
+</section>
+
+<section class="workspace">
+<div class="stage">
+<div class="stagebar"><strong>معاينة مباشرة</strong><small>PNG عالية الدقة</small></div>
+<div id="capture">
+<article id="card" class="card d1">
+<i class="orb"></i><i class="geo1"></i><i class="geo2"></i><i class="ring"></i><i class="stamp"></i><i class="tape"></i>
+<div class="card-content">
+<div class="kicker" id="kicker">TEACH • INSPIRE • EMPOWER</div>
+<div><h2 id="title"></h2><div class="rule"></div><p class="msg" id="message"></p></div>
+<div class="meta">
+<div><span>من: </span><strong id="senderOut">اسم الطالب/ـة</strong></div>
+<div><span>إلى: </span><strong id="teacherOut">اسم المعلّم/ـة</strong></div>
+<div id="emailOut" class="email">teacher@university.edu.sa</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+
+<aside class="controls">
+<div class="block"><h3>01 — اختر التصميم</h3><div class="designs">
+<button class="design-btn active" data-d="1"><div class="thumb t1"></div><span>Quiet Luxury</span></button>
+<button class="design-btn" data-d="2"><div class="thumb t2"></div><span>Editorial Shapes</span></button>
+<button class="design-btn" data-d="3"><div class="thumb t3"></div><span>Paper Collage</span></button>
+</div></div>
+
+<div class="block"><h3>02 — اختر الرسالة</h3><div class="msgs">
+<label class="msgpick"><input type="radio" name="m" value="0" checked><span><b>صُنّاع الأثر</b><small>دافئة ورسمية، مناسبة لجميع المعلّمين.</small></span></label>
+<label class="msgpick"><input type="radio" name="m" value="1"><span><b>أثرٌ يبقى</b><small>مختصرة وأنيقة.</small></span></label>
+<label class="msgpick"><input type="radio" name="m" value="2"><span><b>بكم نكبر</b><small>أكثر عاطفة وشخصية.</small></span></label>
+</div></div>
+
+<div class="block"><h3>03 — أضف البيانات</h3>
+<div class="field"><label>اسم الطالب/ـة</label><input id="sender" maxlength="80" placeholder="اكتب اسمك"></div>
+<div class="field"><label>اسم المعلّم/ـة</label><input id="teacher" maxlength="100" placeholder="اسم المعلّم أو المعلّمة"></div>
+<div class="field"><label>البريد الإلكتروني للمعلّم/ـة</label><input id="email" type="email" dir="ltr" placeholder="teacher@university.edu.sa"></div>
+</div>
+<div class="actions"><button id="save" class="primary">حفظ البطاقة</button><button id="reset" class="ghost">مسح</button></div>
+<div id="status" class="status"></div>
+<div class="note">هذه النسخة على GitHub Pages تحفظ البطاقة على جهاز الطالب. ربط الحفظ التلقائي في Google Drive يحتاج رابط Google Apps Script الخاص بحسابك.</div>
+</aside>
+</section>
+</main>
+<script>
+const M=[
+{t:"إلى صُنّاع الأثر ومُلهمي الأجيال…",x:"كل كلمات الامتنان لا تفي حقّ عطائكم وجميل أثركم.\nشكرًا لعلمٍ أنرتم به عقولنا، ولكلمةٍ منحتنا الثقة، ولتشجيعٍ قرّبنا من أحلامنا."},
+{t:"إلى من يترك أثرًا لا يُنسى…",x:"شكرًا لأنكم جعلتم للمعرفة معنى أجمل، ولأن أثركم تجاوز حدود الدرس ليبقى معنا في كل خطوة نحو المستقبل."},
+{t:"لمعلّمٍ ألهمنا أن نصل أبعد…",x:"بكم كبر فضولنا، واتّسعت أحلامنا، وصارت الخطوة الأولى أكثر ثقة. شكرًا لكل علمٍ شاركتموه، ولكل أثرٍ جميل زرعتموه فينا."}
+];
+let d=1,m=0;
+const q=id=>document.getElementById(id),card=q("card"),sender=q("sender"),teacher=q("teacher"),email=q("email"),status=q("status");
+function render(){q("title").textContent=M[m].t;q("message").innerHTML=M[m].x.replace(/\n/g,"<br>");q("senderOut").textContent=sender.value.trim()||"اسم الطالب/ـة";q("teacherOut").textContent=teacher.value.trim()||"اسم المعلّم/ـة";q("emailOut").textContent=email.value.trim()||"teacher@university.edu.sa";q("kicker").textContent=d===1?"TEACH • INSPIRE • EMPOWER":d===2?"THANK YOU, TEACHER":"GRATITUDE • 2026"}
+document.querySelectorAll(".design-btn").forEach(b=>b.onclick=()=>{d=+b.dataset.d;document.querySelectorAll(".design-btn").forEach(x=>x.classList.toggle("active",x===b));card.className="card d"+d;render()});
+document.querySelectorAll('input[name="m"]').forEach(r=>r.onchange=()=>{m=+r.value;render()});[sender,teacher,email].forEach(x=>x.oninput=render);
+q("reset").onclick=()=>{sender.value=teacher.value=email.value="";d=1;m=0;card.className="card d1";document.querySelectorAll(".design-btn").forEach((x,i)=>x.classList.toggle("active",i===0));document.querySelector('input[name="m"][value="0"]').checked=true;status.textContent="";render()};
+q("save").onclick=async()=>{if(!sender.value.trim()||!teacher.value.trim()||!email.value.trim()){status.textContent="أكملي جميع البيانات أولًا.";status.className="status bad";return}if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){status.textContent="تأكدي من البريد الإلكتروني.";status.className="status bad";return}try{status.textContent="جارٍ تجهيز البطاقة…";status.className="status";if(document.fonts&&document.fonts.ready)await document.fonts.ready;const c=await html2canvas(card,{scale:2.2,useCORS:true,backgroundColor:null,logging:false});const a=document.createElement("a");a.href=c.toDataURL("image/png");a.download="teacher-card-"+Date.now()+".png";a.click();status.textContent="تم حفظ البطاقة ✓";status.className="status ok"}catch(e){status.textContent="تعذّر إنشاء الصورة، حاولي مرة أخرى.";status.className="status bad"}};
+render();
+</script>
+</body></html>
