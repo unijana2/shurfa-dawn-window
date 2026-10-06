@@ -147,47 +147,75 @@ document.getElementById("save").onclick=async()=>{
     btn.textContent="جارٍ تجهيز البطاقة…";
     status.textContent="جارٍ تجهيز البطاقة…";
     status.className="status";
-    if(document.fonts&&document.fonts.ready)await document.fonts.ready;
-    await bg.decode().catch(()=>{});
-    const c=document.createElement("canvas");
-    c.width=1080;c.height=1440;
-    const x=c.getContext("2d");
+
+    if(document.fonts&&document.fonts.ready) await document.fonts.ready;
+    if(typeof bg.decode==="function"){ try{ await bg.decode(); }catch(_){} }
+    if(!bg.complete){
+      await new Promise((resolve,reject)=>{
+        bg.onload=()=>resolve();
+        bg.onerror=()=>reject(new Error("تعذر تحميل خلفية البطاقة"));
+      });
+    }
+
+    const canvas=document.createElement("canvas");
+    canvas.width=1080;
+    canvas.height=1440;
+    const x=canvas.getContext("2d");
+    if(!x) throw new Error("canvas_not_supported");
+
     x.drawImage(bg,0,0,1080,1440);
     x.direction="rtl";
     x.textAlign="center";
     x.textBaseline="middle";
     x.fillStyle="#172f78";
+
     const fit=fitMessage(x,currentMessage(),760,365);
     x.font="500 "+fit.size+"px Tajawal, Arial";
     let y=735-(fit.lines.length-1)*fit.lh/2;
     for(const line of fit.lines){x.fillText(line,540,y);y+=fit.lh}
+
     x.font="600 24px Tajawal, Arial";
     x.fillText(student.value.trim(),834,1265);
     x.fillText(teacher.value.trim(),273,1265);
 
-    const image=c.toDataURL("image/png",1);
-    const payload={
-      image:image,
-      student:student.value.trim(),
-      teacher:teacher.value.trim(),
-      message:currentMessage()
-    };
+    const safeTeacher=(teacher.value.trim()||"Teacher")
+      .replace(/[\\/:*?"<>|#%{}~]/g,"")
+      .replace(/\s+/g,"_")
+      .slice(0,60);
+    const filename="Teacher_Card_"+safeTeacher+".png";
 
+    const blob=await new Promise((resolve,reject)=>{
+      if(canvas.toBlob){
+        canvas.toBlob(b=>b?resolve(b):reject(new Error("blob_failed")),"image/png");
+      }else{
+        try{
+          const data=canvas.toDataURL("image/png");
+          const bin=atob(data.split(",")[1]);
+          const bytes=new Uint8Array(bin.length);
+          for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+          resolve(new Blob([bytes],{type:"image/png"}));
+        }catch(err){reject(err)}
+      }
+    });
+
+    const url=URL.createObjectURL(blob);
     const a=document.createElement("a");
-    a.href=image;
-    const safeTeacher=(teacher.value.trim()||"Teacher").replace(/[\\/:*?"<>|#%{}~]/g,"").replace(/\s+/g,"_").slice(0,60);
-    a.download="Teacher_Card_"+safeTeacher+".png";
+    a.href=url;
+    a.download=filename;
+    a.style.display="none";
     document.body.appendChild(a);
     a.click();
     a.remove();
+
+    setTimeout(()=>URL.revokeObjectURL(url),10000);
 
     status.textContent="تم تحميل البطاقة ✓";
     status.className="status ok";
     btn.textContent="تم التحميل ✓";
     setTimeout(()=>{btn.disabled=false;btn.textContent="تحميل البطاقة"},1800);
   }catch(e){
-    console.error(e);
-    status.textContent="تعذّر تحميل البطاقة. جرّب مرة أخرى.";
+    console.error("CARD_DOWNLOAD_ERROR",e);
+    status.textContent="تعذّر تحميل البطاقة. افتح الصفحة من Chrome أو Safari وجرّب مرة أخرى.";
     status.className="status bad";
     btn.disabled=false;
     btn.textContent="تحميل البطاقة";
