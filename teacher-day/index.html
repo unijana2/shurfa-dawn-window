@@ -107,13 +107,13 @@ textarea,input{width:100%;border:1px solid #dfe5f1;background:#fbfcff;border-rad
 <div class="block">
 <div class="fields">
 <div class="field"><label for="student">اسم الطالب/ـة</label><input id="student" maxlength="40" placeholder="اكتب اسمك"></div>
-<div class="field"><label for="teacher">اسم المعلم/ـة أو الدكتور/ة</label><input id="teacher" maxlength="45" placeholder="اكتب اسم المعلم أو المعلمة"></div><div class="field" style="grid-column:1/-1"><label for="teacherEmail">إيميل المعلم/ـة أو الدكتور/ة</label><input id="teacherEmail" type="email" inputmode="email" autocomplete="email" placeholder="name@university.edu"></div>
+<div class="field"><label for="teacher">اسم المعلم/ـة أو الدكتور/ة</label><input id="teacher" maxlength="45" placeholder="اكتب اسم المعلم أو المعلمة"></div>
 </div>
 </div>
 
-<div class="actions"><button id="save" class="save" type="button">إرسال البطاقة</button><button id="reset" class="reset" type="button">مسح</button></div>
+<div class="actions"><button id="save" class="save" type="button">مشاركة البطاقة</button><button id="reset" class="reset" type="button">مسح</button></div>
 <div id="status" class="status"></div>
-<div class="mini">عند الإرسال تُنشأ البطاقة كصورة PNG وتُرسل مباشرة إلى إيميل المعلم/ـة أو الدكتور/ة.</div>
+<div class="mini">اضغط «مشاركة البطاقة» لإرسالها عبر واتساب أو البريد أو AirDrop أو حفظها في الملفات. وإذا جهازك ما يدعم المشاركة، بتنزل الصورة تلقائيًا.</div>
 
 
 <script>
@@ -136,14 +136,8 @@ document.getElementById("reset").onclick=()=>{message.value="";student.value="";
 function wrapArabic(ctx,text,maxWidth){const paras=text.split(/\n/),lines=[];for(const p of paras){const words=p.split(/\s+/).filter(Boolean);let line="";for(const w of words){const test=line?line+" "+w:w;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=w}else line=test}if(line)lines.push(line)}return lines}
 function fitMessage(ctx,text,maxWidth,maxHeight){let size=34;for(;size>=23;size--){ctx.font="500 "+size+"px Tajawal, Arial";const lines=wrapArabic(ctx,text,maxWidth);const lh=size*1.75;if(lines.length*lh<=maxHeight)return {size,lines,lh}}ctx.font="500 23px Tajawal, Arial";return {size:23,lines:wrapArabic(ctx,text,maxWidth),lh:40}}
 document.getElementById("save").onclick=async()=>{
-  const email=(teacherEmail?.value||"").trim();
-  if(!currentMessage()||!student.value.trim()||!teacher.value.trim()||!email){
-    status.textContent="اكتب الرسالة واسمك واسم المعلّم/ـة وإيميله أولًا.";
-    status.className="status bad";
-    return;
-  }
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    status.textContent="تأكد من كتابة إيميل صحيح.";
+  if(!currentMessage()||!student.value.trim()||!teacher.value.trim()){
+    status.textContent="اكتب الرسالة واسمك واسم المعلّم/ـة أولًا.";
     status.className="status bad";
     return;
   }
@@ -151,12 +145,22 @@ document.getElementById("save").onclick=async()=>{
   const btn=document.getElementById("save");
   try{
     btn.disabled=true;
-    btn.textContent="جارٍ الإرسال…";
-    status.textContent="جارٍ تجهيز وإرسال البطاقة…";
+    btn.textContent="جارٍ تجهيز البطاقة…";
+    status.textContent="جارٍ تجهيز البطاقة…";
     status.className="status";
 
     if(document.fonts&&document.fonts.ready) await document.fonts.ready;
-    if(typeof bg.decode==="function"){ try{ await bg.decode(); }catch(_){} }
+
+    if(!bg.complete || !bg.naturalWidth){
+      await new Promise((resolve,reject)=>{
+        const done=()=>{cleanup();resolve()};
+        const fail=()=>{cleanup();reject(new Error("background_load_failed"))};
+        const cleanup=()=>{bg.removeEventListener("load",done);bg.removeEventListener("error",fail)};
+        bg.addEventListener("load",done);
+        bg.addEventListener("error",fail);
+        bg.src=BG;
+      });
+    }
 
     const canvas=document.createElement("canvas");
     canvas.width=1080;
@@ -179,31 +183,60 @@ document.getElementById("save").onclick=async()=>{
     x.fillText(student.value.trim(),834,1265);
     x.fillText(teacher.value.trim(),273,1265);
 
-    const image=canvas.toDataURL("image/png",0.92);
-    const body=new URLSearchParams();
-    body.set("email",email);
-    body.set("student",student.value.trim());
-    body.set("teacher",teacher.value.trim());
-    body.set("message",currentMessage());
-    body.set("image",image);
-
-    await fetch("https://script.google.com/macros/s/AKfycbxwW8b_TgebnVFq0asymSQY2YI9iAQWVffMJaPoZz0QdLX6bxPCDQctaoV8fRWZE3M5MQ/exec",{
-      method:"POST",
-      mode:"no-cors",
-      headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-      body:body.toString()
+    const blob=await new Promise((resolve,reject)=>{
+      canvas.toBlob(b=>b?resolve(b):reject(new Error("png_failed")),"image/png",1);
     });
 
-    status.textContent="تم إرسال البطاقة ✓";
+    const safeTeacher=(teacher.value.trim()||"Teacher")
+      .replace(/[\\/:*?"<>|#%{}~]/g,"")
+      .replace(/\s+/g,"_")
+      .slice(0,60);
+    const file=new File([blob],"Teacher_Card_"+safeTeacher+".png",{type:"image/png"});
+
+    let shared=false;
+    if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+      try{
+        await navigator.share({
+          files:[file],
+          title:"رسالة شكر بمناسبة يوم المعلم",
+          text:"بطاقة شكر وتقدير من "+student.value.trim()
+        });
+        shared=true;
+        status.textContent="تم فتح المشاركة ✓";
+      }catch(err){
+        if(err && err.name==="AbortError"){
+          status.textContent="تم إلغاء المشاركة.";
+          status.className="status";
+          btn.disabled=false;
+          btn.textContent="مشاركة البطاقة";
+          return;
+        }
+      }
+    }
+
+    if(!shared){
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url;
+      a.download=file.name;
+      a.target="_blank";
+      a.rel="noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),15000);
+      status.textContent="تم تجهيز البطاقة وتنزيلها ✓";
+    }
+
     status.className="status ok";
-    btn.textContent="تم الإرسال ✓";
-    setTimeout(()=>{btn.disabled=false;btn.textContent="إرسال البطاقة"},2200);
+    btn.textContent=shared?"تمت المشاركة ✓":"تم التنزيل ✓";
+    setTimeout(()=>{btn.disabled=false;btn.textContent="مشاركة البطاقة"},2000);
   }catch(e){
-    console.error("CARD_EMAIL_ERROR",e);
-    status.textContent="تعذّر إرسال البطاقة. تأكد من الإيميل وجرّب مرة أخرى.";
+    console.error("CARD_SHARE_ERROR",e);
+    status.textContent="تعذّر تجهيز البطاقة. حدّث الصفحة وجرّب مرة أخرى.";
     status.className="status bad";
     btn.disabled=false;
-    btn.textContent="إرسال البطاقة";
+    btn.textContent="مشاركة البطاقة";
   }
 }
 render();
