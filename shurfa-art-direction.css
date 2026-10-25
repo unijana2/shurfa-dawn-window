@@ -1,0 +1,30 @@
+/* Shurfa 2026 art-direction pass; layered over the original report */
+.stats-hero{width:min(345px,80vw)!important}.stats-hero .tag-num{font-size:clamp(2.3rem,5.7vw,3.9rem)!important}.stats-hero .tag-text{width:84%!important}
+.day-photo{border:0!important;border-radius:2px!important;box-shadow:none!important;inset:7px 7px 20px!important;width:calc(100% - 14px)!important;height:calc(100% - 27px)!important}
+.day-photos{filter:drop-shadow(0 13px 20px rgba(36,20,12,.25))}
+.day-photos:before{content:"";position:absolute;inset:0;background:#fffdf7;border-radius:3px;box-shadow:0 6px 22px #321b2040;transform:rotate(-1.2deg)}
+.day-photos:hover{filter:drop-shadow(0 17px 25px rgba(36,20,12,.38))}
+.coverage-float-cam{animation:shurfaFloat 5s ease-in-out infinite}
+.coverage-inner{position:relative}.shurfa-stickers{display:flex;gap:12px;justify-content:center;align-items:center;margin:8px auto 25px;pointer-events:none}.shurfa-stickers img{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 4px 6px #48241345)}.shurfa-stickers img:nth-child(2){transform:rotate(-16deg);width:36px}.shurfa-stickers img:nth-child(3){transform:rotate(13deg)}
+.idea-bulb{transform-origin:50% 12%}.idea-bulb.shurfa-ignite{animation:shurfaSwing .9s ease-in-out both}.idea-bulb-lit{transition:opacity .5s ease,filter .5s ease!important}.idea-bulb.shurfa-ignite .idea-bulb-lit{animation:shurfaLight 1.6s steps(1,end) both}
+.goals-board .goal-arrow{opacity:.1!important;filter:sepia(1);transform:scale(.65)!important;pointer-events:none}
+.goals-board .goal-tag{filter:drop-shadow(0 8px 16px #64350d30)}
+.goals-board .goal-item{transition:filter .35s ease,transform .35s ease}.goals-board .goal-item:hover{filter:brightness(1.07);transform:translateY(-3px)}
+.impact-methods{max-width:650px;margin-inline:auto!important;border:1px dashed #a85a1270;border-radius:20px;padding:20px 24px!important;background:linear-gradient(135deg,#fff9eea8,#ebd0a775);box-shadow:0 8px 20px #603a1310}
+.shurfa-methods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}
+.shurfa-method{background:#fff8ed;border:1px solid #b77d4f70;border-radius:13px;padding:13px 7px;color:#4a2f1c;box-shadow:0 5px 0 #ddc19a70;font:700 clamp(12px,1.8vw,16px) Cairo,sans-serif;display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap}
+.shurfa-method::before{content:"✦";color:#ba6c25}
+.impact-item{transition:transform .4s ease,filter .4s ease}.impact-item.shurfa-in{animation:shurfaCard .7s cubic-bezier(.2,.8,.2,1) both}.impact-item:hover{transform:translateY(-5px)}
+.chat-bubble.shurfa-message{transform-origin:bottom right}.chat-bubble.shurfa-in{animation:shurfaChat .65s cubic-bezier(.2,.8,.2,1.2) both}
+.chat-bubble--left.shurfa-message{transform-origin:bottom left}
+.envelope-letter{filter:drop-shadow(0 12px 16px #2b130b35)}.envelope-seal{filter:drop-shadow(0 2px 8px #d9841e55)}
+.outputs-stage{isolation:isolate}.shurfa-suitcase-decor{position:absolute;inset:0;pointer-events:none;z-index:8;opacity:0;transition:opacity .5s;overflow:hidden}.shurfa-suitcase-decor.shurfa-show{opacity:1}.shurfa-suitcase-decor span{position:absolute;top:54%;left:50%;display:block;filter:drop-shadow(0 6px 6px #3a190c55);animation:shurfaEmerge 1.4s cubic-bezier(.2,.8,.2,1) both;font-size:clamp(20px,3.2vw,38px)}.shurfa-suitcase-decor span:nth-child(1){--dx:-170px;--dy:-90px;animation-delay:.05s}.shurfa-suitcase-decor span:nth-child(2){--dx:142px;--dy:-105px;animation-delay:.17s}.shurfa-suitcase-decor span:nth-child(3){--dx:-85px;--dy:-142px;animation-delay:.28s}.shurfa-suitcase-decor span:nth-child(4){--dx:68px;--dy:-156px;animation-delay:.39s}
+.shurfa-stitch{width:min(720px,88vw);height:62px;display:block;margin:18px auto;overflow:visible}.shurfa-stitch path{stroke:#a85a12;stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:5 8;filter:drop-shadow(1px 2px 0 #fff7e5);stroke-dashoffset:200;transition:stroke-dashoffset 2s ease}.shurfa-stitch.shurfa-in path{stroke-dashoffset:0}
+@keyframes shurfaEmerge{0%{opacity:0;transform:translate(-50%,0) scale(.2) rotate(-28deg)}100%{opacity:1;transform:translate(calc(-50% + var(--dx)),var(--dy)) scale(1) rotate(5deg)}}
+@keyframes shurfaLight{0%,17%,28%,41%{opacity:0}12%,23%,34%,100%{opacity:1}}
+@keyframes shurfaSwing{0%{transform:rotate(0)}22%{transform:rotate(-9deg)}43%{transform:rotate(6deg)}64%{transform:rotate(-3deg)}100%{transform:rotate(0)}}
+@keyframes shurfaFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-9px) rotate(2deg)}}
+@keyframes shurfaCard{from{opacity:.3;transform:translateY(24px) rotate(-3deg)}to{opacity:1;transform:translateY(0) rotate(0)}}
+@keyframes shurfaChat{from{opacity:.1;transform:translateY(24px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:640px){.shurfa-methods{gap:5px}.shurfa-method{font-size:11px;padding:10px 3px}.shurfa-suitcase-decor span:nth-child(1){--dx:-95px;--dy:-55px}.shurfa-suitcase-decor span:nth-child(2){--dx:95px;--dy:-64px}.shurfa-suitcase-decor span:nth-child(3){--dx:-42px;--dy:-93px}.shurfa-suitcase-decor span:nth-child(4){--dx:40px;--dy:-95px}}
+@media(prefers-reduced-motion:reduce){.shurfa-suitcase-decor span,.idea-bulb.shurfa-ignite,.idea-bulb.shurfa-ignite .idea-bulb-lit,.impact-item.shurfa-in,.chat-bubble.shurfa-in,.coverage-float-cam{animation:none!important}.shurfa-stitch path{stroke-dashoffset:0!important}}
