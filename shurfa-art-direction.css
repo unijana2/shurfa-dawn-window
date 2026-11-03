@@ -28,3 +28,23 @@
 @keyframes shurfaChat{from{opacity:.1;transform:translateY(24px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:640px){.shurfa-methods{gap:5px}.shurfa-method{font-size:11px;padding:10px 3px}.shurfa-suitcase-decor span:nth-child(1){--dx:-95px;--dy:-55px}.shurfa-suitcase-decor span:nth-child(2){--dx:95px;--dy:-64px}.shurfa-suitcase-decor span:nth-child(3){--dx:-42px;--dy:-93px}.shurfa-suitcase-decor span:nth-child(4){--dx:40px;--dy:-95px}}
 @media(prefers-reduced-motion:reduce){.shurfa-suitcase-decor span,.idea-bulb.shurfa-ignite,.idea-bulb.shurfa-ignite .idea-bulb-lit,.impact-item.shurfa-in,.chat-bubble.shurfa-in,.coverage-float-cam{animation:none!important}.shurfa-stitch path{stroke-dashoffset:0!important}}
+
+
+/* Cinematic dawn: scroll-synced light, layered atmosphere, accessible motion */
+.stage{isolation:isolate;--dawn-reveal:0;--dawn-drift-x:0px;--dawn-drift-y:0px}
+.shurfa-dawn-atmosphere{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;opacity:1}
+.shurfa-dawn-horizon{position:absolute;inset:-12%;background:
+ radial-gradient(ellipse 58% 28% at 50% 77%,rgba(255,220,139,.68),rgba(232,131,55,.28) 45%,transparent 77%),
+ radial-gradient(ellipse 52% 40% at 50% 64%,rgba(244,161,77,.18),transparent 78%);
+ opacity:calc(.12 + var(--dawn-reveal) * .76);
+ transform:translate3d(var(--dawn-drift-x),var(--dawn-drift-y),0) scale(calc(1 + var(--dawn-reveal) * .12));
+ transition:opacity .14s linear;mix-blend-mode:screen}
+.shurfa-dawn-rays{position:absolute;inset:-25%;background:conic-gradient(from 244deg at 50% 69%,transparent 0deg,rgba(255,224,161,.12) 7deg,transparent 14deg,transparent 24deg,rgba(255,211,135,.16) 32deg,transparent 39deg,transparent 54deg,rgba(255,226,174,.11) 61deg,transparent 69deg);
+ opacity:calc(var(--dawn-reveal) * .84);filter:blur(15px);transform:translate3d(var(--dawn-drift-x),var(--dawn-drift-y),0);mix-blend-mode:screen}
+.shurfa-dawn-grain{position:absolute;inset:0;opacity:.28;background-image:radial-gradient(circle at center,rgba(255,236,199,.65) 0 1px,transparent 1.8px);background-size:79px 83px;mask-image:linear-gradient(to bottom,transparent 18%,#000 85%)}
+.shurfa-dawn-mote{position:absolute;width:var(--mote-size,3px);height:var(--mote-size,3px);border-radius:50%;background:#ffdf9c;box-shadow:0 0 13px 3px rgba(255,193,91,.35);left:var(--mote-x);top:var(--mote-y);opacity:calc((.1 + var(--dawn-reveal) * .5) * var(--mote-alpha));animation:shurfaDawnFloat var(--mote-duration) ease-in-out infinite alternate;animation-delay:var(--mote-delay)}
+@keyframes shurfaDawnFloat{from{translate:0 8px}to{translate:12px -17px}}
+.shurfa-dawn-caption{position:absolute;bottom:clamp(24px,6vh,65px);left:50%;transform:translateX(-50%);z-index:9;pointer-events:none;display:flex;align-items:center;gap:11px;white-space:nowrap;color:#ffe4b4;font:600 clamp(10px,1.1vw,13px) Cairo,sans-serif;letter-spacing:.06em;text-shadow:0 2px 18px #12090a}
+.shurfa-dawn-caption:before,.shurfa-dawn-caption:after{content:"";display:block;width:clamp(20px,5vw,55px);height:1px;background:linear-gradient(90deg,transparent,#edc689,transparent)}
+@media(max-width:600px){.shurfa-dawn-caption{bottom:22px}.shurfa-dawn-mote:nth-of-type(n+11){display:none}}
+@media(prefers-reduced-motion:reduce){.shurfa-dawn-mote{animation:none!important}.shurfa-dawn-horizon,.shurfa-dawn-rays{transform:none!important;transition:none!important}}
